@@ -721,7 +721,7 @@ uint32 test(int32 var1,string var2){
 ```c
 //contract b,调用contract a
 //声明CALL
-CALL uint32 test(address addr,uint256 amount,int32 var1,string var2);
+CALL uint32 test(CallParams params,int32 var1,string var2);
 MUTABLE
 uint32 testcall(){
      CallParams prams = {Address("0xaaaa"), U256(10000), 100000};
