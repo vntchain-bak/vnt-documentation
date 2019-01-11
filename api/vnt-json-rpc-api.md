@@ -213,7 +213,7 @@ none
 ##### Returns
 
 `String` - The current network id.
-- `"1"`: Ethereum Mainnet
+- `"1"`: VNT Mainnet
 - `"2"`: Morden Testnet  (deprecated)
 - `"3"`: Ropsten Testnet
 - `"4"`: Rinkeby Testnet
@@ -729,9 +729,9 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getCode","params":["0xa94f5
 
 #### core_sign
 
-The sign method calculates an Ethereum specific signature with: `sign(keccak256("\x19Ethereum Signed Message:\n" + len(message) + message)))`.
+The sign method calculates an VNT specific signature with: `sign(keccak256("\x19VNT Signed Message:\n" + len(message) + message)))`.
 
-By adding a prefix to the message makes the calculated signature recognisable as an Ethereum specific signature. This prevents misuse where a malicious DApp can sign arbitrary data (e.g. transaction) and use the signature to impersonate the victim.
+By adding a prefix to the message makes the calculated signature recognisable as an VNT specific signature. This prevents misuse where a malicious DApp can sign arbitrary data (e.g. transaction) and use the signature to impersonate the victim.
 
 **Note** the address to sign with must be unlocked.
 
@@ -775,7 +775,7 @@ Creates new message call transaction or a contract creation, if the data field c
   - `gas`: `QUANTITY`  - (optional, default: 90000) Integer of the gas provided for the transaction execution. It will return unused gas.
   - `gasPrice`: `QUANTITY`  - (optional, default: To-Be-Determined) Integer of the gasPrice used for each paid gas
   - `value`: `QUANTITY`  - (optional) Integer of the value sent with this transaction
-  - `data`: `DATA`  - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI)
+  - `data`: `DATA`  - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. 
   - `nonce`: `QUANTITY`  - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
 
 ```js
@@ -856,7 +856,7 @@ Executes a new message call immediately without creating a transaction on the bl
   - `gas`: `QUANTITY`  - (optional) Integer of the gas provided for the transaction execution. core_call consumes zero gas, but this parameter may be needed by some executions.
   - `gasPrice`: `QUANTITY`  - (optional) Integer of the gasPrice used for each paid gas
   - `value`: `QUANTITY`  - (optional) Integer of the value sent with this transaction
-  - `data`: `DATA`  - (optional) Hash of the method signature and encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI)
+  - `data`: `DATA`  - (optional) Hash of the method signature and encoded parameters. 
 2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](#the-default-block-parameter)
 
 ##### Returns
@@ -884,7 +884,7 @@ Generates and returns an estimate of how much gas is necessary to allow the tran
 
 ##### Parameters
 
-See [core_call](#core_call) parameters, expect that all properties are optional. If no gas limit is specified geth uses the block gas limit from the pending block as an upper bound. As a result the returned estimate might not be enough to executed the call/transaction when the amount of gas is higher than the pending block gas limit.
+See [core_call](#core_call) parameters, expect that all properties are optional. If no gas limit is specified gvnt uses the block gas limit from the pending block as an upper bound. As a result the returned estimate might not be enough to executed the call/transaction when the amount of gas is higher than the pending block gas limit.
 
 ##### Returns
 
