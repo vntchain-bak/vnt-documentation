@@ -106,7 +106,14 @@ var voteContract = vnt.core.contract(abi).at("0x00000000000000000000000000000000
 
 #### 合约的调用方法
 
-![调用投票合约](./images/call_contract.png)
+```js
+tx=voteContract.registerWitness.sendTransaction(url, {from: eth.coinbase})
+```
+
+其中：
+- voteContract：投票合约实例
+- registerWitness：投票合约的注册见证人函数
+- url：函数的参数，示例为注册见证人函数的参数
 
 #### 注册见证人节点
 
