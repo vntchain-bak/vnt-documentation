@@ -646,9 +646,13 @@ string c = var1.d.c;
 * 发送原生代币
 * 跨合约调用``MUTABLE``的函数
 
+***
+
 ### ``Payable``
 
 ``Payable``函数可以接收来自交易中的原生代币，使用符号``$``表示，``$``需要写在方法名的最前面
+
+``Payable``函数的声明：
 
 ```c
 MUTABLE
@@ -662,7 +666,7 @@ uint32 $testfunction1(int32 var1,string var2,address var3){
 如果方法名的开头没有``$``符号，表示该方法为``Unpayable``的,禁止接收来自交易中的原生代币
 
 
-函数的声明
+``Unpayable``函数的声明：
 
 ```c
 MUTABLE
