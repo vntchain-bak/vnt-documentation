@@ -101,7 +101,7 @@ ABI描述了合约的每个函数的入参和输出结果。
 
 ```js
 var abi =[{"inputs":[{"name":"url","type":"bytes"}],"name":"registerWitness","outputs":[],"type":"function"},{"inputs":[],"name":"unregisterWitness","outputs":[],"type":"function"},{"inputs":[{"name":"candidate","type":"address[]"}],"name":"voteWitnesses","outputs":[],"type":"function"},{"inputs":[],"name":"cancelVote","outputs":[],"type":"function"},{"inputs":[],"name":"startProxy","outputs":[],"type":"function"},{"inputs":[],"name":"stopProxy","outputs":[],"type":"function"},{"inputs":[],"name":"cancelProxy","outputs":[],"type":"function"},{"inputs":[{"name":"proxy","type":"address"}],"name":"setProxy","outputs":[],"type":"function"},{"inputs":[{"name":"stakeCount","type":"uint256"}],"name":"stake","outputs":[],"type":"function"},{"inputs":[],"name":"unStake","outputs":[],"type":"function"},{"inputs":[],"name":"extractOwnBounty","outputs":[],"type":"function"}]
-var voteContract = web3.core.contract(abi).at("0x0000000000000000000000000000000000000009");
+var voteContract = vnt.core.contract(abi).at("0x0000000000000000000000000000000000000009");
 ```
 
 #### 合约的调用方法
