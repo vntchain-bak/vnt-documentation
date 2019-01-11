@@ -1,6 +1,6 @@
 # 投票合约使用教程
 
-本文介绍投票合约在geth console的使用方法，**投票合约的使用方式和普通的合约是一致的。*，如果了解普通合约的使用，很快就可以掌握投票合约的使用，下面主要介绍投票合约的使用，会捎带介绍合约的基本使用。
+本文介绍投票合约在geth console的使用方法，投票合约的使用方式和普通的合约是一致的。如果了解普通合约的使用，很快就可以掌握投票合约的使用，下面主要介绍投票合约的使用，会捎带介绍合约的基本使用。
 
 ### 基本介绍
 
@@ -118,7 +118,7 @@ tx=voteContract.registerWitness.sendTransaction(url, {from:eth.coinbase})
 
 #### 取消注册见证人节点
 
-注册见证人无入参。
+取消注册见证人无入参。
 
 ```js
 tx=voteContract.unregisterWitness.sendTransaction({from:eth.coinbase})
@@ -126,7 +126,7 @@ tx=voteContract.unregisterWitness.sendTransaction({from:eth.coinbase})
 
 #### 投票人抵押代币
 
-投票人在投票前，需要抵押代币，参数只有1个，即本次抵押代币的数量，代币单位为VNT。
+投票人在投票前需要抵押代币，参数只有1个，即本次抵押代币的数量，代币单位为VNT。
 
 ```js
 tx=voteContract.stake.sendTransaction(5, {from:eth.coinbase})
@@ -134,7 +134,7 @@ tx=voteContract.stake.sendTransaction(5, {from:eth.coinbase})
 
 #### 投票人取消抵押代币
 
-投票人和赎回抵押的代币。
+投票人赎回抵押的代币。
 
 ```js
 tx=voteContract.unStake.sendTransaction({from:eth.coinbase})
@@ -150,7 +150,7 @@ tx=voteContract.voteWitnesses.sendTransaction([eth.coinbase], {from:eth.coinbase
 
 #### 投票人取消投票
 
-投票人可以取消对见证人的投票。
+投票人取消对见证人的投票。
 
 ```js
 tx=voteContract.cancelVote.sendTransaction({from:eth.coinbase})
@@ -166,7 +166,7 @@ tx=voteContract.extractOwnBounty.sendTransaction({from:eth.coinbase})
 
 #### 开启代理
 
-开启代理，成为代理人，代表节点愿意替代别人投票。
+开启代理成为代理人，代表节点愿意替代别人投票。
 
 ```js
 tx=voteContract.startProxy.sendTransaction({from:eth.coinbase})
@@ -174,7 +174,7 @@ tx=voteContract.startProxy.sendTransaction({from:eth.coinbase})
 
 #### 关闭代理
 
-关闭代理，不再当代理人，代表不再代表其他人投票。
+关闭代理不再当代理人，代表不再代表其他人投票。
 
 ```js
 tx=voteContract.stopProxy.sendTransaction({from:eth.coinbase})
@@ -182,7 +182,7 @@ tx=voteContract.stopProxy.sendTransaction({from:eth.coinbase})
 
 #### 设置代理
 
-让代理节点，让`0x2c6822e1529e5bb080b1d0290ec035e77c0a7260`替代本节点投票。
+让代理节点替代自己投票，示例让`0x2c6822e1529e5bb080b1d0290ec035e77c0a7260`替代本账号投票。
 
 ```js
 tx=voteContract.setProxy.sendTransaction("0x2c6822e1529e5bb080b1d0290ec035e77c0a7260"，{from:eth.coinbase})
@@ -198,7 +198,7 @@ tx=voteContract.cancelProxy.sendTransaction({from:eth.coinbase})
 
 ### 查询投票信息
 
-当前提供了3个JSON RPC API可以查询投票合约信息，具体信息见[JSON RPC API文档]()。
+当前提供了3个JSON RPC API可以查询投票合约信息，具体信息见[JSON RPC API文档](../../api/vnt-json-rpc-api.md)。
 
 - `eth_getVoter`：获取某个投票人的所有信息。
 - `eth_getAllCandidates`：获取所有见证人候选人的信息。
