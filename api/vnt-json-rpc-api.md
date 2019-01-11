@@ -1,4 +1,4 @@
-# VNT Chain JSON API
+# VNT Chain JSON RPC API
 
 ## Dapp APIs
 
