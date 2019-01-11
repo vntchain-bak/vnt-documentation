@@ -213,11 +213,8 @@ none
 ##### Returns
 
 `String` - The current network id.
+
 - `"1"`: VNT Mainnet
-- `"2"`: Morden Testnet  (deprecated)
-- `"3"`: Ropsten Testnet
-- `"4"`: Rinkeby Testnet
-- `"42"`: Kovan Testnet
 
 ##### Example
 ```js
