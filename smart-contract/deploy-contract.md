@@ -1,12 +1,23 @@
 # 前提
 
 ## 运行环境
-安装node: v8.11.2
+需要安装
+```
+node: v8.11.2
+npm: v8.11.2
+```
 
-## 依赖
+## 初始化部署目录
+```
+mkdir deploy
+cd deploy
+npm init  # 该步会生成package.json
+```
+
+## 安装依赖
 安装vnt.js: 0.20.7
 
-已定义在package.json中，直接在该工程目录下，运行npm install即可
+1. 需要将该依赖写到package.json中(如下所示)
 
 package.json:
 
@@ -22,16 +33,21 @@ package.json:
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vnt": "git+http://192.168.9.251/vntchain/vnt.js.git#develop"
+    "vnt": "git+http://github.com/vntchain/vnt.js.git#develop"
   }
 }
 ```
+
+2. 然后运行：
+
+``npm install``
 
 如果安装失败，是因为缺少g++包，请安装。
 
 Centos下：`sudo yum install gcc gcc-c++`
 
 其它操作系统请自查。
+
 
 # 使用方法
 ## 第一步：导入vnt.js库
