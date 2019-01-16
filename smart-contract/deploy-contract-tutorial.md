@@ -1,3 +1,7 @@
+这只是一个使用vnt.js进行合约部署与调用的示例，更多的vnt.js接口请参考：
+* [VNT Javascript API](https://github.com/vntchain/vnt.js/blob/master/doc/api-reference.md)
+
+
 # 前提
 
 ## 运行环境
@@ -70,6 +74,7 @@ vnt.personal.unlockAccount(from1, pass1)
 vnt.personal.unlockAccount(from2, pass2)
 ```
 >  注：这些账号的对应私钥，必须存放在所连的provider数据目录中的keystore之下，否则无法使用
+>  在实际的开发场景中，你需要通过你本地的keystore文件来打开账号
 >  以上代码仅是例子，请根据自己的使用需求准备账号
 
 ## 第四步：准备合约代码
@@ -95,7 +100,7 @@ var code = wasmcode.toString("base64")
 ```js
 //这是合约创建主函数
 function deployWasmContract() {
-  // 将code和abi进行打包，其中abi也需要进行一下base64编码以方便传输
+  // 将code和abi进行打包，其中abi也需要进行一下base64编码
   var pack = {
     Code: code,
     Abi: wasmabi.toString("base64")
