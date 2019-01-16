@@ -22,18 +22,20 @@ VNT中的智能合约可以基于C语言编写。智能合约中包含能够持�
 
 //###################################################################
 
-#include <stdbool.h>                                           //支持bool类型
+#include <stdbool.h> //支持bool类型
+#ifndef _DEFINE_VNTLIB_H
+#define _DEFINE_VNTLIB_H
 #define VNT_WASM_EXPORT __attribute__((visibility("default"))) //导出方法
-#define MUTABLE VNT_WASM_EXPORT                                //定义需要导出且修改状态变量的方法
-#define UNMUTABLE \
-  VNT_WASM_EXPORT                        //定义需要导出的方法，该方法可以读取状态变量但不会修改状态变量
-#define EVENT void                       //空宏，声明Event函数时用的关键字
-#define indexed                          //空宏，声明Event函数时，定义需要索引的参数时用到的关键字
-#define CALL                             //空宏，声明跨合约调用函数时用到的关键字
+#define MUTABLE VNT_WASM_EXPORT //定义需要导出且修改状态变量的方法
+#define UNMUTABLE                                                              \
+  VNT_WASM_EXPORT //定义需要导出的方法，该方法可以读取状态变量但不会修改状态变量
+#define EVENT void //空宏，声明Event函数时用的关键字
+#define indexed //空宏，声明Event函数时，定义需要索引的参数时用到的关键字
+#define CALL    //空宏，声明跨合约调用函数时用到的关键字
 #define KEY volatile                     //宏，声明全局变量
 #define constructor VNT_WASM_EXPORT void //空宏，声明构造函数时使用
 #define _ VNT_WASM_EXPORT void Fallback  //宏，fallback函数符号
-#define N(name) (#name)                  //宏，将输入直接转化为字符串的形式
+#define N(name) (#name) //宏，将输入直接转化为字符串的形式
 #define CAT(n) n##n
 #define U256(n) ("u2561537182776" #n)      //声明uint256类型时使用的宏
 #define Address(n) ("address1537182776" n) //声明address类型时使用的宏
@@ -105,10 +107,8 @@ void Assert(bool condition, string msg);
 //交易回滚
 void Revert(string msg);
 //判断条件是否成立，如果失败则交易失败
-void Require(bool condition, string msg)
-{
-  if (condition != true)
-  {
+void Require(bool condition, string msg) {
+  if (condition != true) {
     Revert(msg);
   }
 }
@@ -153,23 +153,21 @@ uint256 U256From(string u256Str);
 
 //这是一个mapping类型的宏，用于定义一个mapping变量，
 //其中key_type为key类型，val_type为value类型
-#define mapping(key_type, val_type) \
-  struct                            \
-  {                                 \
-    key_type key;                   \
-    val_type value;                 \
-    uint64 mapping1537182776;       \
+#define mapping(key_type, val_type)                                            \
+  struct {                                                                     \
+    key_type key;                                                              \
+    val_type value;                                                            \
+    uint64 mapping1537182776;                                                  \
   }
 
 //这是一个array类型的宏，用于定义一个array变量，
 //其中val_type为数组元素类型
-#define array(val_type)     \
-  struct                    \
-  {                         \
-    uint64 index;           \
-    val_type value;         \
-    uint64 length;          \
-    uint64 array1537182776; \
+#define array(val_type)                                                        \
+  struct {                                                                     \
+    uint64 index;                                                              \
+    val_type value;                                                            \
+    uint64 length;                                                             \
+    uint64 array1537182776;                                                    \
   }
 
 //以下几个指令为全局变量相关指令，不用在合约中显式
@@ -218,23 +216,26 @@ int32 U256_Cmp(uint256 x, uint256 y);
 //####gas function
 void AddGas(uint64 gas);
 
-typedef struct
-{
-  address addr; //被调用的地址，
-  uint256 vnt;  //发往被调用地址的代币
-  uint64 gas;   //为跨合约调用花费的gas
-
+/*
+CallParams:跨合约调用的第一个参数
+addr:被调用的地址
+vnt:发往被调用地址的代币
+gas:为跨合约调用花费的gas
+*/
+typedef struct {
+  address addr;
+  uint256 vnt;
+  uint64 gas;
 } CallParams;
 
 //隐式调用WriteWithPointer、ReadWithPointer、AddGas三个指令
-//使其能被编译到wasm代码中去
-__attribute__((visibility("default"))) void declaredFunction()
-{
+//使其能被编译到wasm代码中
+__attribute__((visibility("default"))) static void declaredFunction() {
   WriteWithPointer(0, 0);
   ReadWithPointer(0, 0);
   AddGas(0);
 }
-
+#endif
 //###################################################################
 // 以上为标准库
 ```

@@ -6,6 +6,8 @@
 //###################################################################
 
 #include <stdbool.h> //支持bool类型
+#ifndef _DEFINE_VNTLIB_H
+#define _DEFINE_VNTLIB_H
 #define VNT_WASM_EXPORT __attribute__((visibility("default"))) //导出方法
 #define MUTABLE VNT_WASM_EXPORT //定义需要导出且修改状态变量的方法
 #define UNMUTABLE                                                              \
@@ -197,20 +199,25 @@ int32 U256_Cmp(uint256 x, uint256 y);
 //####gas function
 void AddGas(uint64 gas);
 
+/*
+CallParams:跨合约调用的第一个参数
+addr:被调用的地址
+vnt:发往被调用地址的代币
+gas:为跨合约调用花费的gas
+*/
 typedef struct {
-  address addr; //被调用的地址，
-  uint256 vnt;  //发往被调用地址的代币
-  uint64 gas;   //为跨合约调用花费的gas
-
+  address addr;
+  uint256 vnt;
+  uint64 gas;
 } CallParams;
 
 //隐式调用WriteWithPointer、ReadWithPointer、AddGas三个指令
-//使其能被编译到wasm代码中去
-__attribute__((visibility("default"))) void declaredFunction() {
+//使其能被编译到wasm代码中
+__attribute__((visibility("default"))) static void declaredFunction() {
   WriteWithPointer(0, 0);
   ReadWithPointer(0, 0);
   AddGas(0);
 }
-
+#endif
 //###################################################################
 // 以上为标准库
