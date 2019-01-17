@@ -4,7 +4,7 @@ wasmgen是gvnt中包含的命令行工具，可以编译c语言智能合约，�
 
 如下为该工具的使用方法。
 
-## 安装依赖clang 5.0 llvm 5.0
+## 一、安装依赖clang 5.0 llvm 5.0
 
 ### ``ubuntu``
 
@@ -50,7 +50,7 @@ enabled_metadata=1
 ``yum install llvm``
 
 
-## 安装依赖wasmception
+## 二、安装依赖wasmception
 
 ### ```mac```
 
@@ -67,7 +67,7 @@ echo export VNT_WASMCEPTION="/[PATH]/wasmception-[XXX]-bin" >> ~/.bash_profile
 source ~/.bash_profile
 ``` 
 
-## 编译wasmgen
+## 三、编译得到wasmgen命令
 ```
 git clone git@github.com:vntchain/go-vnt.git
 cd go-vnt
@@ -75,7 +75,7 @@ cd go-vnt
 make all
 ```
 
-## 使用wasmgen进行编译
+## 四、使用wasmgen进行编译
 
 #### wasmgen参数说明
 
