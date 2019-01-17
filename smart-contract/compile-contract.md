@@ -13,6 +13,7 @@ wget https://raw.githubusercontent.com/go-clang/gen/master/scripts/switch-clang-
 
 /bin/bash ./switch-clang-version.sh 5.0
 
+//使用绝对路径进行软链接
 sudo ln -s /usr/lib/llvm-5.0/lib/libclang*so /usr/lib/
 
 ```
