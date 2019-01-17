@@ -213,7 +213,7 @@ typedef struct {
 
 //隐式调用WriteWithPointer、ReadWithPointer、AddGas三个指令
 //使其能被编译到wasm代码中
-__attribute__((visibility("default"))) static void declaredFunction() {
+__attribute__((visibility("default"))) void declaredFunction() {
   WriteWithPointer(0, 0);
   ReadWithPointer(0, 0);
   AddGas(0);
