@@ -62,11 +62,11 @@ typedef char *address;
 address GetSender();
 //在跨合约调用时，获取交易最初的发起者地址
 address GetOrigin();
-//获取合约创建、调用时，同时发生的转账值
+//获取合约创建、调用时，同时发生的vnt转账值，单位为wei
 uint256 GetValue();
 //获取当前区块的难度
 uint256 GetDifficulty();
-//获取某个地址的原生币余额
+//获取某个地址的vnt余额，单位为wei
 uint256 GetBalanceFromAddress(address addr);
 //获取当前正在执行合约的地址
 address GetContractAddress();
@@ -96,9 +96,9 @@ void Require(bool condition, string msg) {
   }
 }
 
-//合约向addr转账，转账金额为amount,转账失败会revert,消耗2300gas
+//合约向addr转账，转账金额为amount，单位为wei,转账失败会revert,消耗2300gas
 void SendFromContract(address addr, uint256 amount);
-//合约向addr转账，转账金额为amount,转账失败返回false,消耗2300gas
+//合约向addr转账，转账金额为amount，单位为wei,转账失败返回false,消耗2300gas
 bool TransferFromContract(address addr, uint256 amount);
 
 //将int64的数值转化为字符串
@@ -201,14 +201,14 @@ void AddGas(uint64 gas);
 
 /*
 CallParams:跨合约调用的第一个参数
-addr:被调用的地址
-vnt:发往被调用地址的代币
-gas:为跨合约调用花费的gas
+_address:被调用的地址
+_amount:发往被调用地址的代币,单位为wei
+_gas:为跨合约调用支付的gas
 */
 typedef struct {
-  address addr;
-  uint256 vnt;
-  uint64 gas;
+  address _address;
+  uint256 _amount;
+  uint64 _gas;
 } CallParams;
 
 //隐式调用WriteWithPointer、ReadWithPointer、AddGas三个指令
