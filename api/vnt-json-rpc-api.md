@@ -1543,7 +1543,7 @@ None
 
 ##### Returns
 
-`DATA` - a list of all the witness candidates.
+`DATA` - a list of all the witness candidates. Candidates sorted by `voteCount` and `owner`.
 
 ##### Example
 
@@ -1557,40 +1557,48 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getAllCandidates","params":
     "id": 1,
     "result": [
         {
-            "Owner": "0x42a875Ac43f2b4e6D17f54D288071f5952bF8911",
-            "Active": true,
-            "Url": "/ip4/127.0.0.1/tcp/5213/ipfs/1kHHWuQNUVV2wgE8SqzQjWhiFQcfpkP5tRVTdJXAPWVj4nR",
-            "VoteCount": 0,
-            "TotalBounty": 220500000000000000000,
-            "ExtractedBounty": 0,
-            "LastExtractTime": 0
+            "owner": "0xbf66D398226F200467cD27B14e85b25a8c232384",
+            "name": "node3",
+            "active": true,
+            "url": "/ip4/127.0.0.1/tcp/5212/ipfs/1kHfop9dnUHHmtBXVkLB5UauAmACtrsEX5H5t6oCRpdL198",
+            "voteCount": 10,
+            "totalBounty": 0,
+            "extractedBounty": 0,
+            "lastExtractTime": 0,
+            "website": "www.node3.com"
         },
         {
-            "Owner": "0x122369F04f32269598789998de33e3d56E2C507a",
-            "Active": true,
-            "Url": "/ip4/127.0.0.1/tcp/5210/ipfs/1kHcch6yuBCgC5nPPSK3Yp7Es4c4eenxAeK167pYwUvNjRo",
-            "VoteCount": 0,
-            "TotalBounty": 2.0715e+21,
-            "ExtractedBounty": 1.1535e+21,
-            "LastExtractTime": 1545359465
+            "owner": "0x122369F04f32269598789998de33e3d56E2C507a",
+            "name": "node0",
+            "active": true,
+            "url": "/ip4/127.0.0.1/tcp/5210/ipfs/1kHcch6yuBCgC5nPPSK3Yp7Es4c4eenxAeK167pYwUvNjRo",
+            "voteCount": 0,
+            "totalBounty": 0,
+            "extractedBounty": 0,
+            "lastExtractTime": 0,
+            "website": "www.node0.com"
         },
         {
-            "Owner": "0xbf66D398226F200467cD27B14e85b25a8c232384",
-            "Active": true,
-            "Url": "/ip4/127.0.0.1/tcp/5213/ipfs/1kHHWuQNUVV2wgE8SqzQjWhiFQcfpkP5tRVTdJXAPWVj4nR",
-            "VoteCount": 0,
-            "TotalBounty": 202500000000000000000,
-            "ExtractedBounty": 0,
-            "LastExtractTime": 0
+            "owner": "0x3DcF0b3787C31B2bdF62d5bC9128A79c2bb18829",
+            "name": "node2",
+            "active": true,
+            "url": "/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bzUnMr1NbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB",
+            "voteCount": 0,
+            "totalBounty": 72000000000000000000,
+            "extractedBounty": 0,
+            "lastExtractTime": 0,
+            "website": "www.node2.com"
         },
         {
-            "Owner": "0x3DcF0b3787C31B2bdF62d5bC9128A79c2bb18829",
-            "Active": true,
-            "Url": "/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bzUnMr1NbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB",
-            "VoteCount": 0,
-            "TotalBounty": 247500000000000000000,
-            "ExtractedBounty": 0,
-            "LastExtractTime": 0
+            "owner": "0x42a875Ac43f2b4e6D17f54D288071f5952bF8911",
+            "name": "node1",
+            "active": true,
+            "url": "/ip4/127.0.0.1/tcp/5213/ipfs/1kHHWuQNUVV2wgE8SqzQjWhiFQcfpkP5tRVTdJXAPWVj4nR",
+            "voteCount": 0,
+            "totalBounty": 0,
+            "extractedBounty": 0,
+            "lastExtractTime": 0,
+            "website": "www.node1.com"
         }
     ]
 }
@@ -1621,17 +1629,17 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getVoter","params":["0x1223
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "Owner": "0x122369f04f32269598789998de33e3d56e2c507a",
-        "IsProxy": false,
-        "ProxyVoteCount": 0,
-        "Proxy": "0x0000000000000000000000000000000000000000",
-        "LastVoteCount": 9,
-        "LastVoteTimeStamp": 1545039733,
-        "VoteCandidates": [
+        "owner": "0x122369f04f32269598789998de33e3d56e2c507a",
+        "isProxy": false,
+        "proxyVoteCount": 0,
+        "proxy": "0x0000000000000000000000000000000000000000",
+        "lastVoteCount": 9,
+        "lastVoteTimeStamp": 1545039733,
+        "voteCandidates": [
             "0x122369f04f32269598789998de33e3d56e2c507a"
         ],
-        "StakeCount": 10,
-        "LastStakeTimeStamp": 1545039795
+        "stakeCount": 10,
+        "lastStakeTimeStamp": 1545039795
     }
 }
 ```
