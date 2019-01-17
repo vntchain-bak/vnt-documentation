@@ -72,8 +72,9 @@ wasmgen参数说明
 * ``-output``:wasm，abi和预编译代码输出文件夹，默认路径为在合约代码的文件夹下新建output
 
 
-# clang合约在线编译
+<!-- # clang合约在线编译
 
 使用wasm在线编译工具**webassembly studio**进行在线编译，将wasmgen生成的预编译代码precompile.c复制到webassembly studio中，点击build按钮进行编译，编译完成后下载wasm
 
 [webassembly studio 网页链接](https://webassembly.studio/)
+-->
