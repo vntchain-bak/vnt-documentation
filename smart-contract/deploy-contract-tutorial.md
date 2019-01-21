@@ -4,99 +4,89 @@
 
 # 前提
 
-## 运行环境
+## 1. 运行环境
 需要安装
 ```
 node: v8.11.2
 ```
 
-## 初始化部署目录
+## 2. 初始化部署目录
 ```
 mkdir deploy
 cd deploy
 npm init  # 该步会生成package.json
 ```
 
-## 安装依赖
-安装vnt.js: 0.20.7
-
-1. 需要将该依赖写到package.json中(如下所示)
-
-package.json:
-
-```js
-{
-  "name": "wasm_test",
-  "version": "1.0.0",
-  "description": "vnt.js test",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "vnt": "git+http://github.com/vntchain/vnt.js.git#develop"
-  }
-}
+## 3. 安装依赖
+### 安装vnt.js: 0.20.7
+```
+npm install --save https://github.com/vntchain/vnt.js.git\#v0.20.7-alpha.1
 ```
 
-2. 然后运行：
+> 如果安装失败，是因为缺少g++包，请安装。
 
-``npm install``
+> Centos下：`sudo yum install gcc gcc-c++`
 
-如果安装失败，是因为缺少g++包，请安装。
+> 其它操作系统请自查。
 
-Centos下：`sudo yum install gcc gcc-c++`
 
-其它操作系统请自查。
+### 安装其它依赖
+```
+# 这些依赖为以太坊有js工具库，vntchain可以兼容这些工具库
+npm install --save ethereumjs-tx
+npm install --save ethereumjs-account
+```
 
 
 # 使用方法
-## 第一步：导入vnt.js库
+## 1. 如果你有vntchain节点
+> 如果你通过运行go-vnt，搭建起了自己的vntchain节点，并且你的vntchain节点加入了某个网络。那么，你就可以使用你的节点进行账户管理，而在开发时使用一些相对友好的vnt.js接口，减少js代码的开发量
+
+### 第一步：导入vnt.js库
 `var Vnt = require("vnt")`
 
-## 第二步：创建vnt provider连接
+### 第二步：创建vnt provider连接
 ```js
 var vnt = new Vnt();
-vnt.setProvider(new vnt.providers.HttpProvider("http://192.168.9.61:12340"));
+vnt.setProvider(new vnt.providers.HttpProvider("http://192.168.0.110:8805"));
 ```
 
-## 第三步：准备要用到的账号并打开账户
+### 第三步：准备要用到的账号并打开账户
+#### 1. 将要用到的账户keystore文件放到vntchain节点数据目录下的keystore子目录下
+#### 2. 在代码中声明和打开对应的账户
 ```js
+// 声明账户地址和密码
 var from1 = "0x122369f04f32269598789998de33e3d56e2c507a"
 var pass1 = ""
 var from2 = "0x3dcf0b3787c31b2bdf62d5bc9128a79c2bb18829"
 var pass2 = ""
 var toAddr = "0x3ea7a559e44e8cabc362ca28b6211611467c76f3"
 
+// 打开账户。打开后，账户的密钥就会被vntchain节点管理起来，用作交易签名
 vnt.personal.unlockAccount(from1, pass1)
 vnt.personal.unlockAccount(from2, pass2)
 ```
->  注：这些账号的对应私钥，必须存放在所连的provider数据目录中的keystore之下，否则无法使用
->  在实际的开发场景中，你需要通过你本地的keystore文件来打开账号
->  以上代码仅是例子，请根据自己的使用需求准备账号
 
-## 第四步：准备合约代码
+### 第四步：准备合约代码
 从文件系统中读取代码和abi
 ```js
 var fs = require("fs")  // 这是用到的fs库，请在代码最前面引入
 
 //定义代码路径
-var codeFile = "/Users/yanfengxi/go/src/github.com/ethereum/go-ethereum/core/wasm/testdata/erc20/erc20.wasm"
+var codeFile = "/home/mycode/erc20/erc20.wasm"
 //定义abi路径
-var abiFile = "/Users/yanfengxi/go/src/github.com/ethereum/go-ethereum/core/wasm/testdata/erc20/abi.json"
+var abiFile = "/home/mycode/erc20/abi.json"
 //读取代码数据
 var wasmcode = fs.readFileSync(codeFile)
 //读取abi数据
 var wasmabi = fs.readFileSync(abiFile)
 //将abi数据解析成json结构
 var abi = JSON.parse(wasmabi.toString("utf-8"))
-//将代码进行base64编译，便于传输
+//将代码进行base64编译
 var code = wasmcode.toString("base64")
 ```
 
-## 第五步：合约创建
+### 第五步：合约创建
 ```js
 //这是合约创建主函数
 function deployWasmContract() {
@@ -120,8 +110,9 @@ function doDeploy(txData) {
     var contract = vnt.core.contract(abi)
 
     // 部署合约
+    // 这里我们不需要显式的签名，vntchain节点会帮我们签名，使用一个封装友好的new接口就能部署合约
     var contractReturned = contract.new(1000000000, "bitcoin", "BTC", {
-        from: from1,
+        from: from1,  //from参数对应的账户会被用作交易签名
         data: txData,
         gas: 4000000
     }, function(err, myContract){
@@ -136,7 +127,7 @@ function doDeploy(txData) {
 }
 ```
 
-## 第六步：合约调用
+### 第六步：合约调用
 
 举两个例子
 
@@ -194,6 +185,12 @@ function getTransactionReceipt(tx, cb) {
   }
 }
 ```
+
+## 2. 如果你没有vntchain节点
+
+> 如果你没有自己的vntchain节点，而是通过连接公网上的某个节点进行开发，那么你就需要自己做好账户管理，同时需要对自己生成交易体，并对其进行签名。
+
+
 
 
 # 参考资料
