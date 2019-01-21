@@ -25,74 +25,102 @@
 ABI描述了合约的每个函数的入参和输出结果。
 
 ```js
-[{
-    "inputs": [{
-        "name": "url",
-        "type": "bytes"
-    }],
-    "name": "registerWitness",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "unregisterWitness",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [{
-        "name": "candidate",
-        "type": "address[]"
-    }],
-    "name": "voteWitnesses",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "cancelVote",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "startProxy",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "stopProxy",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "cancelProxy",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [{
-        "name": "proxy",
-        "type": "address"
-    }],
-    "name": "setProxy",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [{
-        "name": "stakeCount",
-        "type": "uint256"
-    }],
-    "name": "stake",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "unStake",
-    "outputs": [],
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "extractOwnBounty",
-    "outputs": [],
-    "type": "function"
-}]
+[
+    {
+        "inputs": [
+            {
+                "name": "nodeUrl",
+                "type": "bytes"
+            },
+            {
+                "name": "website",
+                "type": "bytes"
+            },
+            {
+                "name": "nodeName",
+                "type": "bytes"
+            }
+        ],
+        "name": "registerWitness",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "unregisterWitness",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "candidate",
+                "type": "address[]"
+            }
+        ],
+        "name": "voteWitnesses",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "cancelVote",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "startProxy",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "stopProxy",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "cancelProxy",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "proxy",
+                "type": "address"
+            }
+        ],
+        "name": "setProxy",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "stakeCount",
+                "type": "uint256"
+            }
+        ],
+        "name": "stake",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "unStake",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "extractOwnBounty",
+        "outputs": [],
+        "type": "function"
+    }
+]
 ```
 
 ### 投票合约的使用
@@ -100,27 +128,35 @@ ABI描述了合约的每个函数的入参和输出结果。
 在console使用ABI获取投票合约实例：
 
 ```js
-var abi =[{"inputs":[{"name":"url","type":"bytes"}],"name":"registerWitness","outputs":[],"type":"function"},{"inputs":[],"name":"unregisterWitness","outputs":[],"type":"function"},{"inputs":[{"name":"candidate","type":"address[]"}],"name":"voteWitnesses","outputs":[],"type":"function"},{"inputs":[],"name":"cancelVote","outputs":[],"type":"function"},{"inputs":[],"name":"startProxy","outputs":[],"type":"function"},{"inputs":[],"name":"stopProxy","outputs":[],"type":"function"},{"inputs":[],"name":"cancelProxy","outputs":[],"type":"function"},{"inputs":[{"name":"proxy","type":"address"}],"name":"setProxy","outputs":[],"type":"function"},{"inputs":[{"name":"stakeCount","type":"uint256"}],"name":"stake","outputs":[],"type":"function"},{"inputs":[],"name":"unStake","outputs":[],"type":"function"},{"inputs":[],"name":"extractOwnBounty","outputs":[],"type":"function"}]
+var abi =[{"inputs":[{"name":"nodeUrl","type":"bytes"},{"name":"website","type":"bytes"},{"name":"nodeName","type":"bytes"}],"name":"registerWitness","outputs":[],"type":"function"},{"inputs":[],"name":"unregisterWitness","outputs":[],"type":"function"},{"inputs":[{"name":"candidate","type":"address[]"}],"name":"voteWitnesses","outputs":[],"type":"function"},{"inputs":[],"name":"cancelVote","outputs":[],"type":"function"},{"inputs":[],"name":"startProxy","outputs":[],"type":"function"},{"inputs":[],"name":"stopProxy","outputs":[],"type":"function"},{"inputs":[],"name":"cancelProxy","outputs":[],"type":"function"},{"inputs":[{"name":"proxy","type":"address"}],"name":"setProxy","outputs":[],"type":"function"},{"inputs":[{"name":"stakeCount","type":"uint256"}],"name":"stake","outputs":[],"type":"function"},{"inputs":[],"name":"unStake","outputs":[],"type":"function"},{"inputs":[],"name":"extractOwnBounty","outputs":[],"type":"function"}]
 var voteContract = vnt.core.contract(abi).at("0x0000000000000000000000000000000000000009");
 ```
 
 #### 合约的调用方法
 
 ```js
-tx=voteContract.registerWitness.sendTransaction(url, {from: eth.coinbase})
+tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
 ```
 
 其中：
 - voteContract：投票合约实例
 - registerWitness：投票合约的注册见证人函数
-- url：函数的参数，示例为注册见证人函数的参数
+- sendTransaction: 使用此RPC发送交易
+- 5：合约函数参数，从ABI能看出来`stake`函数需要1个参数：抵押的代币数量
+- `{from:core.coinbase}`：sendTransaction的参数，详细见[core_sendTransaction](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md#core_sendtransaction)
 
 #### 注册见证人节点
 
-从ABI可以看出来，当前注册见证人只需要提供1个参数：url，即见证人节点的p2p地址。
+从ABI可以看出来，当前注册见证人只需要提供3个参数：
+- name: 节点名称
+- website：节点网站网址
+- nodeurl：函数参数，见证人函数的参数
 
 ```js
-tx=voteContract.registerWitness.sendTransaction(url, {from:core.coinbase})
+name="greatvnt"
+website="www.greatvnt.com"
+nodeurl="/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bxUnMr1dbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB"
+tx=voteContract.registerWitness.sendTransaction(nodeurl,name,website, {from: core.coinbase})
 ```
 
 #### 取消注册见证人节点
