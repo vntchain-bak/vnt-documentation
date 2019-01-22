@@ -134,16 +134,20 @@ var voteContract = vnt.core.contract(abi).at("0x00000000000000000000000000000000
 
 #### 合约的调用方法
 
+下面是合约调用的基本方法：
+
 ```js
 tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
 ```
 
-其中：
-- voteContract：投票合约实例
-- registerWitness：投票合约的注册见证人函数
-- sendTransaction: 使用此RPC发送交易
+合约调用包含5部分，其中：
+- voteContract：合约实例，本例中是投票合约示例
+- stake：要调用的合约函数，本例是stake函数
+- sendTransaction: 使用此RPC接口发送交易，即通过交易调用合约
 - 5：合约函数参数，从ABI能看出来`stake`函数需要1个参数：抵押的代币数量
 - `{from:core.coinbase}`：sendTransaction的参数，详细见[core_sendTransaction](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md#core_sendtransaction)
+
+通过以上介绍的方法，为大家提供投票合约每个函数的调用样例。
 
 #### 注册见证人节点
 
