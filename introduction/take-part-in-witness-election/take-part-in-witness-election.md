@@ -160,7 +160,7 @@ tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
 name="greatvnt"
 website="www.greatvnt.com"
 nodeurl="/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bxUnMr1dbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB"
-tx=voteContract.registerWitness.sendTransaction(nodeurl,name,website, {from: core.coinbase})
+tx=voteContract.registerWitness.sendTransaction(nodeurl,website,name, {from: core.coinbase})
 ```
 
 #### 取消注册见证人节点
