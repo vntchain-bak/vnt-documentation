@@ -70,7 +70,7 @@ uint256 GetDifficulty();
 uint256 GetBalanceFromAddress(address addr);
 //获取当前正在执行合约的地址
 address GetContractAddress();
-//获取区块hash
+//获取某个区块的hash，只能查到当前区块之前256个区块范围内的区块。
 string GetBlockHash(uint64 blocknumber);
 //获取区块高度
 uint64 GetBlockNumber();
