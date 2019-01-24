@@ -135,6 +135,7 @@ $ gvnt --rpc --rpccorsdomain "http://localhost:3000"
 * [shh_post](#shh_post)
 * [shh_version](#shh_version)
 * [core_getAllCandidates](#shh_getmessages)
+* [core_getStake](#core_getStake)
 * [core_getVoter](#core_getVoter)
 * [core_getRestVNTBounty](#core_getRestVNTBounty)
 
