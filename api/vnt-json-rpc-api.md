@@ -1606,6 +1606,39 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getAllCandidates","params":
 
 ***
 
+#### core_getStake
+
+Returns stake information of a user.
+
+##### Parameters
+
+1. `DATA`, 20 Bytes - address of user.
+
+##### Returns
+
+`DATA` - stake information.
+
+##### Example
+
+```js
+// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"core_getStake","params":["0x122369f04f32269598789998de33e3d56e2c507a"],"id":1}'
+
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "owner": "0x122369f04f32269598789998de33e3d56e2c507a",
+        "stakeCount": 5,
+        "lastStakeTimeStamp": 1548299757
+    }
+}
+```
+
+***
+
+
 #### core_getVoter
 
 Returns a voter's information, stake information included.
@@ -1638,8 +1671,6 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getVoter","params":["0x1223
         "voteCandidates": [
             "0x122369f04f32269598789998de33e3d56e2c507a"
         ],
-        "stakeCount": 10,
-        "lastStakeTimeStamp": 1545039795
     }
 }
 ```
