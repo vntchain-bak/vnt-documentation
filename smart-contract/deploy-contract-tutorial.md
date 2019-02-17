@@ -18,9 +18,10 @@ npm init  # 该步会生成package.json
 ```
 
 ## 3. 安装依赖
-### 安装vnt.js: 0.20.7
+### 安装vnt.js: 0.20.7和vnt-kit.js 1.0.0
 ```
 npm install --save https://github.com/vntchain/vnt.js.git\#v0.20.7-alpha.1
+npm install --save https://github.com/vntchain/vnt-kit.js.git
 ```
 
 > 如果安装失败，是因为缺少g++包，请安装。
@@ -174,6 +175,7 @@ function getTransactionReceipt(tx, cb) {
 ### 第一步：导入vnt.js库和ethereumjs-tx库
 ```js
 var Vnt = require("vnt")
+var vntkit = require("vnt-kit")
 var Tx = require("ethereumjs-tx")
 ```
 
@@ -194,7 +196,7 @@ var pass2 = ""
 
 function openAccount(file, passwd) {
     var content = fs.readFileSync(file).toString("utf-8")
-    return vnt.account.decrypt(content, passwd, false)
+    return vntkit.account.decrypt(content, passwd, false)
 }
 
 var account1 = openAccount(ksDir + kFile1, pass1)
