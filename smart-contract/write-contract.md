@@ -591,14 +591,14 @@ address addr = Address("0xaaa");
 
 | from\to | int32                 | int64                              | uint32                             | uint64                              | string     | address        | uint256        | bool    |
 | ------- | --------------------- | ---------------------------------- | ---------------------------------- | ----------------------------------- | ---------- | -------------- | -------------- | ------- |
-| int32   |                       | int64(x)                           | uint32(x)                          | uint64(x)                           | FromI64(x) |                | U256FromI64(x) | bool(x) |
-| int64   | int32(x)              |                                    | uint32(x)                          | uint64(x)                           | FromI64(x) |                | U256FromI64(x) | bool(x) |
-| uint32  | int32(x)              | int64(x)                           |                                    | uint64(x)                           | FromU64(x) |                | U256FromU64(x) | bool(x) |
-| uint64  | int32(x)              | int64(x)                           | uint32(x)                          |                                     | FromU64(x) |                | U256FromU64(x) | bool(x) |
+| int32   |                       | (int64)x                           | (uint32)x                          | (uint64)x                           | FromI64(x) |                | U256FromI64(x) | (bool)x |
+| int64   | (int32)x              |                                    | (uint32)x                          | (uint64)x                           | FromI64(x) |                | U256FromI64(x) | (bool)x |
+| uint32  | (int32)x             | (int64)x                           |                                    | (uint64)x                           | FromU64(x) |                | U256FromU64(x) | (bool)x |
+| uint64  | (int32)x              | (int64)x                           | (uint32)x                          |                                     | FromU64(x) |                | U256FromU64(x) | (bool)x |
 | string  | ToI64(x) 或者 atol(x) | ToI64(x) 或者 strtoll(x, NULL, 10) | ToU64(x) 或者 strtoul(x, NULL, 10) | Tou64(x) 或者 strtoull(a, NULL, 10) |            | AddressFrom(x) | U256From(x)    |
 | address |                       |                                    |                                    |                                     |            |                |                |
 | uint256 |                       |                                    |                                    |                                     | x          |                |                |
-| bool    | int32(x)              | int64(x)                           | uint32(x)                          | uint64(x)                           | FromI64(x) |                | U256FromI64(x) |
+| bool    | (int32)x              | (int64)x                           | (uint32)x                          | (uint64)x                           | FromI64(x) |                | U256FromI64(x) |
 
 注意：
 * ``string``转``整形``使用的``atol``,``strtoll``,``strtoul``,``strtoull``为c语言标准库方法，需要引入``<stdlib.h>``
