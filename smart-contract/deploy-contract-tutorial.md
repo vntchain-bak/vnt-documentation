@@ -20,7 +20,7 @@ npm init  # 该步会生成package.json
 ## 3. 安装依赖
 ### 安装vnt.js: 0.20.7和vnt-kit.js 1.0.0
 ```
-npm install --save https://github.com/vntchain/vnt.js.git\#v0.20.7-alpha.1
+npm install --save https://github.com/vntchain/vnt.js.git
 npm install --save https://github.com/vntchain/vnt-kit.js.git
 ```
 
