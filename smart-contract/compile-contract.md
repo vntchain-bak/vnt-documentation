@@ -1,12 +1,13 @@
-# wasmgen
+# Bottle
 
-wasmgen是gvnt中包含的命令行工具，可以编译c语言智能合约，生成``wasm``文件和``abi``文件。而对于所产生的``wasm``和``abi``文件，可以将它们部署到区块链网络中使用。
+``Bottle``是开发``VNT``智能合约的命令行工具。
+``Bottle``支持将c语言智能合约编译成``wasm``，提取``abi``文件，并将``wasm``和``abi``压缩及编码成``VNT``网络合约部署所需要的智能合约文件。
 
-如下为该工具的使用方法。
+## 编译与安装
 
-## 一、安装依赖clang 5.0 llvm 5.0
+### 一、安装依赖clang 5.0 llvm 5.0
 
-### ``ubuntu``
+#### 1. ``ubuntu``
 
 ```
 wget https://raw.githubusercontent.com/go-clang/gen/master/scripts/switch-clang-version.sh
@@ -18,7 +19,7 @@ sudo ln -s /usr/lib/llvm-5.0/lib/libclang*so /usr/lib/
 
 ```
 
-### ``mac``
+#### 2. ``mac``
 
 ```
 brew install llvm@5
@@ -26,10 +27,9 @@ brew install llvm@5
 sudo ln -s /usr/local/opt/llvm@5/lib/libclang*dylib /usr/local/lib
 
 ```
+#### 3. ``centos``
 
-### ``centos``
-
-#### 1. 添加yum源
+##### 添加yum源
 
 ```
 [alonid-llvm-5.0.0]
@@ -44,22 +44,26 @@ enabled=1
 enabled_metadata=1
 ```
 
-#### 2. 更新源
+##### 更新源
 ``yum makecache``
 
-#### 3. 安装llvm
+##### 安装llvm
 ``yum install llvm``
 
+##### 建立软链接
+``sudo ln -s /opt/llvm-5.0.0/lib64/libclang*so /usr/local/lib``
 
-## 二、安装依赖wasmception
+***
 
-### ```mac```
+### 二、安装依赖wasmception
 
-[wasmception](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-darwin-bin.tar.gz)
+#### ```mac```
 
-### ```linux```
+[mac版wasmception下载](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-darwin-bin.tar.gz)
 
-[wasmception](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-linux-bin.tar.gz)
+#### ```linux```
+
+[linux版wasmception下载](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-linux-bin.tar.gz)
 
 下载wasmception并解压wasmception,设置wasmception的环境变量
 
@@ -68,31 +72,63 @@ echo export VNT_WASMCEPTION="/[PATH]/wasmception-[XXX]-bin" >> ~/.bash_profile
 source ~/.bash_profile
 ``` 
 
-## 三、编译得到wasmgen命令
+***
+
+### 三、编译得到bottle命令
 ```
-git clone git@github.com:vntchain/go-vnt.git
-cd go-vnt
-# 通过make all进行编译，编译结果会生成到./build目录下
+git clone git@github.com:vntchain/bottle.git
+cd bottle
 make all
 ```
 
-## 四、使用wasmgen进行编译
+***
 
-#### wasmgen参数说明
-
-* ``-I``:添加合约引用的头文件所在文件夹,默认为合约代码的文件夹
-* ``-code``:合约代码的路径
-* ``-output``:wasm，abi和预编译代码输出文件夹，默认路径为在合约代码的文件夹下新建output
-
-#### 示例
+## bottle使用
 
 ```
-./build/bin/wasmgen -I /home/mylib -code /home/mycode/erc20.c -output /home/myoutput
+NAME:
+   bottle - the bottle command line interface
+
+   Copyright 2018-2019 The bottle Authors
+
+USAGE:
+   bottle [global options] command [command options] [arguments...]
+   
+VERSION:
+   0.6.0-beta
+   
+COMMANDS:
+   compile     Compile contract code to wasm and compress
+   compress    Compress wasm and abi
+   decompress  Deompress file into wasm and abi
+   hint        Contract hint
+   help, h     Shows a list of commands or help for one command
+   
+COMPILE OPTIONS:
+  --code value  Specific a contract code path, - for STDIN
+  --include     Specific the head file directory need by contract
+  --output      Specific a output directory path
+  
+COMPRESS OPTIONS:
+  --wasm value  Specific a wasm path
+  --abi value   Specific a abi path need by contract
+  --output      Specific a output directory path
+  
+DECOMPRESS OPTIONS:
+  --file value  Specific a compress file path to decompress
+  --output      Specific a output directory path
+  
+HINT OPTIONS:
+  --code value  Specific a contract code path, - for STDIN
+  
+GLOBAL OPTIONS:
+  --help, -h  show help
+  
+
+COPYRIGHT:
+   Copyright 2018-2019 The bottle Authors
 ```
 
-<!-- # clang合约在线编译
+## 许可证
 
-使用wasm在线编译工具**webassembly studio**进行在线编译，将wasmgen生成的预编译代码precompile.c复制到webassembly studio中，点击build按钮进行编译，编译完成后下载wasm
-
-[webassembly studio 网页链接](https://webassembly.studio/)
--->
+所有`bottle`仓库生成的二进制程序都采用GNU General Public License v3.0许可证, 具体请查看[COPYING](https://github.com/vntchain/bottle/blob/master/LICENSE)。
