@@ -5,9 +5,9 @@
 
 ## 编译与安装
 
-### 安装依赖clang 5.0 llvm 5.0
+### 一、安装依赖clang 5.0 llvm 5.0
 
-#### ``ubuntu``
+#### 1. ``ubuntu``
 
 ```
 wget https://raw.githubusercontent.com/go-clang/gen/master/scripts/switch-clang-version.sh
@@ -19,7 +19,7 @@ sudo ln -s /usr/lib/llvm-5.0/lib/libclang*so /usr/lib/
 
 ```
 
-#### ``mac``
+#### 2. ``mac``
 
 ```
 brew install llvm@5
@@ -27,7 +27,7 @@ brew install llvm@5
 sudo ln -s /usr/local/opt/llvm@5/lib/libclang*dylib /usr/local/lib
 
 ```
-#### ``centos``
+#### 3. ``centos``
 
 ##### 添加yum源
 
@@ -50,16 +50,20 @@ enabled_metadata=1
 ##### 安装llvm
 ``yum install llvm``
 
+##### 建立软链接
+``sudo ln -s /opt/llvm-5.0.0/lib64/libclang*so /usr/local/lib``
 
-### 安装依赖wasmception
+***
+
+### 二、安装依赖wasmception
 
 #### ```mac```
 
-[wasmception] https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-darwin-bin.tar.gz
+[mac版wasmception下载](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-darwin-bin.tar.gz)
 
 #### ```linux```
 
-[wasmception] https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-linux-bin.tar.gz
+[linux版wasmception下载](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-linux-bin.tar.gz)
 
 下载wasmception并解压wasmception,设置wasmception的环境变量
 
@@ -68,14 +72,18 @@ echo export VNT_WASMCEPTION="/[PATH]/wasmception-[XXX]-bin" >> ~/.bash_profile
 source ~/.bash_profile
 ``` 
 
-### 编译得到bottle命令
+***
+
+### 三、编译得到bottle命令
 ```
 git clone git@github.com:vntchain/bottle.git
 cd bottle
 make all
 ```
 
-## 使用
+***
+
+## bottle使用
 
 ```
 NAME:
