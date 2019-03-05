@@ -123,7 +123,7 @@ void PrintStr(string remark, string s);
 void PrintUint64T(string remark, uint64 num);
 //打印一个uint32数字
 void PrintUint32T(string remark, uint32 num);
-//打印一个int64数字
+//打印一个int64数字:q
 void PrintInt64T(string remark, int64 num);
 //打印一个int32数字
 void PrintInt32T(string remark, int32 num);
