@@ -89,7 +89,7 @@ p2p地址中包含了IP和端口号，我们在启动节点的时候需要指定
 ```bash
 ➜ gvnt --datadir node0 --port 12340 console
 // 省略很多输出
-> admin.nodeInfo.enode
+> admin.nodeInfo.vnode
 "/ip4/127.0.0.1/tcp/12340/ipfs/1kHcch6yuBCgC5nPPSK3Yp7Es4c4eenxAeK167pYwUvNjRo"
 ```
 
