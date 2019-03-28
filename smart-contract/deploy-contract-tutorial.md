@@ -22,6 +22,7 @@ npm init  # 该步会生成package.json
 ```
 npm install --save https://github.com/vntchain/vnt.js.git
 npm install --save https://github.com/vntchain/vnt-kit.js.git
+
 ```
 
 > 如果安装失败，是因为缺少g++包，请安装。
