@@ -240,7 +240,8 @@ function deployWasmContract() {
        gasPrice: vnt.toHex(30000000000000),
        gasLimit: vnt.toHex(gas),
        value: '0x00',
-       data: data
+       data: data,
+       chainId: 1  //这里必须指定chainId，即你所连接的node的chainId，否则交易签名将出错
     }
 
     // 生成交易
