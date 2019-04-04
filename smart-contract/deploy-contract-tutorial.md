@@ -22,6 +22,7 @@ npm init  # 该步会生成package.json
 ```
 npm install --save https://github.com/vntchain/vnt.js.git
 npm install --save https://github.com/vntchain/vnt-kit.js.git
+
 ```
 
 > 如果安装失败，是因为缺少g++包，请安装。
@@ -240,7 +241,8 @@ function deployWasmContract() {
        gasPrice: vnt.toHex(30000000000000),
        gasLimit: vnt.toHex(gas),
        value: '0x00',
-       data: data
+       data: data,
+       chainId: 1  //这里必须指定chainId，即你所连接的node的chainId，否则交易签名将出错
     }
 
     // 生成交易
