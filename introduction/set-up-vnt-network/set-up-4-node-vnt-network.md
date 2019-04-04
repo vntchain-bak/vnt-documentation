@@ -388,7 +388,7 @@ gvnt --networkid 1012 --datadir node3 --port 12343 --vntbootnode "/ip4/127.0.0.1
 在每个初始见证人节点上解锁账户、开启共识，可以看到区块不断产生。
 
 ```bash
-personal.unlockAccount(core.coinbase)
+personal.unlockAccount(core.coinbase, "账户密码", 3153600000) // 3153600000指解锁的秒数，这段时间之后，账户会自动锁住
 bp.start()
 ```
 
