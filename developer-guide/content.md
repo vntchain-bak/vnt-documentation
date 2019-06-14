@@ -14,10 +14,10 @@
     1. 虚拟机——凤喜
 1. 《Hubble的生态》：获得第一个VNT、（钱包客户端）、区块链浏览器、其他工具——wtb
 1. 《如何成为超级节点》：准备硬件、网络配置、参与竞选、BP规范（官网、其他info、官方浏览器信息抓取）——大彬
-1. 连接到VNT网络 ——大彬
-    1. 《如何搭建一个本地的测试网》
-    1. [如何加入hubble网络](./05-network/02.connect-to-hubble-network.md)
-    1. 《如何连接到VNT测试网》测试网节点列表、水龙头
+1. 连接到VNT网络
+    1. [如何搭建一个本地的测试网/私有链](../introduction/set-up-vnt-network/set-up-4-node-vnt-network.md)
+    1. [如何加入hubble网络](./05-network/connect-to-hubble-network.md)
+    1. [如何连接到VNT测试网](./05-network/connect-to-hubble-testnet.md)
 1. 智能合约
     1. 开发合约
         1. 《如何用C语言开发合约》
