@@ -34,10 +34,10 @@
 ## 智能合约开发
 
 1. 开发合约
-    1. 《如何用C语言开发合约》
-    1. 《如何build合约》
-    1. 《合约的部署和调用》
-    1. 《投票合约使用教程》
+    1. [如何用C语言开发合约](https://github.com/vntchain/vnt-documentation/blob/master/smart-contract/write-contract.md)
+    1. [如何build合约](https://github.com/vntchain/vnt-documentation/blob/master/smart-contract/compile-contract.md)
+    1. [合约的部署和调用](https://github.com/vntchain/vnt-documentation/blob/master/smart-contract/deploy-contract-tutorial.md)
+    1. [投票合约使用教程](https://github.com/vntchain/vnt-documentation/blob/master/introduction/take-part-in-witness-election/take-part-in-witness-election.md)
 1. 开发文档
-    1. 《Hubble Network rpc API文档》
-    1. 《Hubble Network js API文档》
+    1. [Hubble Network RPC API文档](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md)
+    1. [Hubble Network JS API文档](https://github.com/vntchain/vnt.js/blob/master/doc/api-reference.md)
