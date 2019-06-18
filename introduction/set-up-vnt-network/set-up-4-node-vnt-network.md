@@ -1,6 +1,6 @@
-# 如何搭建一个VNT测试网络
+# 如何在本地搭建一个Hubble开发测试网
 
-这篇文章教你如何搭建一个VNT测试网络，并且以搭建单机器4个VNT见证人节点的测试网络为例。
+这篇文章教你如何在本地搭建一个Hubble开发测试网，并且以搭建单机器4个Hubble见证人节点的开发测试网为例。
 
 
 
@@ -89,7 +89,7 @@ p2p地址中包含了IP和端口号，我们在启动节点的时候需要指定
 ```bash
 ➜ gvnt --datadir node0 --port 12340 console
 // 省略很多输出
-> admin.nodeInfo.enode
+> admin.nodeInfo.vnode
 "/ip4/127.0.0.1/tcp/12340/ipfs/1kHcch6yuBCgC5nPPSK3Yp7Es4c4eenxAeK167pYwUvNjRo"
 ```
 
@@ -388,8 +388,8 @@ gvnt --networkid 1012 --datadir node3 --port 12343 --vntbootnode "/ip4/127.0.0.1
 在每个初始见证人节点上解锁账户、开启共识，可以看到区块不断产生。
 
 ```bash
-personal.unlockAccount(core.coinbase)
+personal.unlockAccount(core.coinbase, "账户密码", 3153600000) // 3153600000指解锁的秒数，这段时间之后，账户会自动锁住
 bp.start()
 ```
 
-以上，测试网络就搭建起来了。
+以上，开发测试网络就搭建起来了。

@@ -791,7 +791,7 @@ params: [{
 
 `DATA`, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
 
-Use [core_getTransactionReceipt](#core_gettransactionreceipt) to get the contract address, after the transaction was mined, when you created a contract.
+Use [core_getTransactionReceipt](#core_gettransactionreceipt) to get the contract address, after the transaction was packed to block, when you created a contract.
 
 ##### Example
 ```js
@@ -824,7 +824,7 @@ params: ["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb97
 
 `DATA`, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
 
-Use [core_getTransactionReceipt](#core_gettransactionreceipt) to get the contract address, after the transaction was mined, when you created a contract.
+Use [core_getTransactionReceipt](#core_gettransactionreceipt) to get the contract address, after the transaction was packed to block, when you created a contract.
 
 ##### Example
 ```js
@@ -1220,8 +1220,8 @@ Topics are order-dependent. A transaction with a log with topics [A, B] will be 
 ##### Parameters
 
 1. `Object` - The filter options:
-  - `fromBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
-  - `toBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
+  - `fromBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last produced block or `"pending"`, `"earliest"` for not yet packed transactions.
+  - `toBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last produced block or `"pending"`, `"earliest"` for not yet packed transactions.
   - `address`: `DATA|Array`, 20 Bytes - (optional) Contract address or a list of addresses from which logs should originate.
   - `topics`: `Array of DATA`,  - (optional) Array of 32 Bytes `DATA` topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
 
@@ -1437,8 +1437,8 @@ Returns an array of all logs matching a given filter object.
 ##### Parameters
 
 1. `Object` - The filter options:
-  - `fromBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
-  - `toBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
+  - `fromBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last produced block or `"pending"`, `"earliest"` for not yet packed transactions.
+  - `toBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last produced block or `"pending"`, `"earliest"` for not yet packed transactions.
   - `address`: `DATA|Array`, 20 Bytes - (optional) Contract address or a list of addresses from which logs should originate.
   - `topics`: `Array of DATA`,  - (optional) Array of 32 Bytes `DATA` topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
   - `blockhash`:  `DATA`, 32 Bytes - (optional) `blockHash` is a filter option which restricts the logs returned to the single block with the 32-byte hash `blockHash`.  Using `blockHash` is equivalent to `fromBlock` = `toBlock` = the block number with hash `blockHash`.  If `blockHash` is present in the filter criteria, then neither `fromBlock` nor `toBlock` are allowed.

@@ -250,5 +250,3 @@ tx=voteContract.cancelProxy.sendTransaction({from:core.coinbase})
 - `core_getVoter`：获取某个投票人的所有信息。
 - `core_getAllCandidates`：获取所有见证人候选人的信息。
 - `core_getRestVNTBounty`：获取当前VNT激励剩余值。
-
-
