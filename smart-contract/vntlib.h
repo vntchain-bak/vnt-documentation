@@ -9,22 +9,24 @@
 #ifndef _DEFINE_VNTLIB_H
 #define _DEFINE_VNTLIB_H
 #define VNT_WASM_EXPORT __attribute__((visibility("default"))) //导出方法
-#define MUTABLE VNT_WASM_EXPORT                                //定义需要导出且修改状态变量的方法
-#define UNMUTABLE \
-  VNT_WASM_EXPORT                         //定义需要导出的方法，该方法可以读取状态变量但不会修改状态变量
-#define EVENT void                        //空宏，声明Event函数时用的关键字
-#define indexed                           //空宏，声明Event函数时，定义需要索引的参数时用到的关键字
-#define CALL                              //空宏，声明跨合约调用函数时用到的关键字
+#define MUTABLE VNT_WASM_EXPORT //定义需要导出且修改状态变量的方法
+#define UNMUTABLE                                                              \
+  VNT_WASM_EXPORT //定义需要导出的方法，该方法可以读取状态变量但不会修改状态变量
+#define EVENT void //空宏，声明Event函数时用的关键字
+#define indexed //空宏，声明Event函数时，定义需要索引的参数时用到的关键字
+#define CALL    //空宏，声明跨合约调用函数时用到的关键字
 #define KEY volatile                      //宏，声明全局变量
 #define constructor VNT_WASM_EXPORT void  //空宏，声明构造函数时使用
 #define _ VNT_WASM_EXPORT void Fallback   //宏，fallback函数符号
 #define $_ VNT_WASM_EXPORT void $Fallback //宏，payable fallback函数符号
-#define N(name) (#name)                   //宏，将输入直接转化为字符串的形式
+#define N(name) (#name) //宏，将输入直接转化为字符串的形式
 #define CAT(n) n##n
 #define U256(n) ("u2561537182776" #n)      //声明uint256类型时使用的宏
 #define Address(n) ("address1537182776" n) //声明address类型时使用的宏
 
 #define now GetTimestamp() //获取区块生成的时间戳
+
+// Time units
 //#define years(n) (60 * 60 * 24 * 365 * n)UL;
 #define years(n) n * 31536000UL
 //#define weeks(n) (60 * 60 * 24 * 7 * n)UL;
@@ -77,8 +79,13 @@ uint64 GetBlockNumber();
 uint64 GetTimestamp();
 //获取区块生产者的地址
 address GetBlockProduser();
-// SHA3加密运算
+// SHA3加密运算,返回以0x开头的十六进制字符串
 string SHA3(string data);
+// Ecrecover,参数hash,v,r,s都需要转化成十六进制字符串
+// example
+// Ecrecover("0x8309e99c09154c8f03d373c270965cf6d2be0af1fc1395e518596c4d7945b989",\
+"0x1c","0xdd3d526fb1154524d4c61a9e673d4bfc6fcc9fdcce39108a8486437196dd828b","0x5d7b80ae2985f43a817e1043ac02f6d421e9704b9bb31f4c3211aac9493d0d91")
+address Ecrecover(string hash, string v, string r, string s);
 //获取剩余GAS
 uint64 GetGas();
 //获取当前交易的GasLimit
@@ -88,10 +95,8 @@ void Assert(bool condition, string msg);
 //交易回滚
 void Revert(string msg);
 //判断条件是否成立，如果失败则交易失败
-void Require(bool condition, string msg)
-{
-  if (condition != true)
-  {
+void Require(bool condition, string msg) {
+  if (condition != true) {
     Revert(msg);
   }
 }
@@ -123,7 +128,7 @@ void PrintStr(string remark, string s);
 void PrintUint64T(string remark, uint64 num);
 //打印一个uint32数字
 void PrintUint32T(string remark, uint32 num);
-//打印一个int64数字:q
+//打印一个int64数字
 void PrintInt64T(string remark, int64 num);
 //打印一个int32数字
 void PrintInt32T(string remark, int32 num);
@@ -140,23 +145,21 @@ string U256ToString(uint256 u256);
 
 //这是一个mapping类型的宏，用于定义一个mapping变量，
 //其中key_type为key类型，val_type为value类型
-#define mapping(key_type, val_type) \
-  struct                            \
-  {                                 \
-    key_type key;                   \
-    val_type value;                 \
-    uint64 mapping1537182776;       \
+#define mapping(key_type, val_type)                                            \
+  struct {                                                                     \
+    key_type key;                                                              \
+    val_type value;                                                            \
+    uint64 mapping1537182776;                                                  \
   }
 
 //这是一个array类型的宏，用于定义一个array变量，
 //其中val_type为数组元素类型
-#define array(val_type)     \
-  struct                    \
-  {                         \
-    uint64 index;           \
-    val_type value;         \
-    uint64 length;          \
-    uint64 array1537182776; \
+#define array(val_type)                                                        \
+  struct {                                                                     \
+    uint64 index;                                                              \
+    val_type value;                                                            \
+    uint64 length;                                                             \
+    uint64 array1537182776;                                                    \
   }
 
 //以下几个指令为全局变量相关指令，不用在合约中显式
@@ -177,7 +180,7 @@ void InitializeVariables();
 uint64 Pow(uint64 x, uint64 y);
 
 //以下为uint256类型的数学运算函数
-/// UINT256
+// UINT256
 // uint64转成uint256
 uint256 U256FromU64(uint64 x);
 // int64转成uint256
@@ -192,8 +195,19 @@ uint256 U256_Mul(uint256 x, uint256 y);
 uint256 U256_Div(uint256 x, uint256 y);
 //取余
 uint256 U256_Mod(uint256 x, uint256 y);
-// Pow
+//Pow
 uint256 U256_Pow(uint256 x, uint256 y);
+//Left shift
+uint256 U256_Shl(uint256 value, uint256 shift);
+//Right shift
+uint256 U256_Shr(uint256 value, uint256 shift);
+//And
+uint256 U256_And(uint256 x, uint256 y);
+//Or
+uint256 U256_Or(uint256 x, uint256 y);
+//Xor
+uint256 U256_Xor(uint256 x, uint256 y);
+
 //比较运算
 // Cmp compares x and y and returns:
 //
@@ -213,8 +227,7 @@ _address:被调用的地址
 _amount:发往被调用地址的代币,单位为wei
 _gas:为跨合约调用支付的gas
 */
-typedef struct
-{
+typedef struct {
   address _address;
   uint256 _amount;
   uint64 _gas;
@@ -222,23 +235,20 @@ typedef struct
 
 //隐式调用WriteWithPointer、ReadWithPointer、AddGas三个指令
 //使其能被编译到wasm代码中
-__attribute__((visibility("default"))) void declaredFunction()
-{
+__attribute__((visibility("default"))) void declaredFunction() {
   WriteWithPointer(0, 0);
   ReadWithPointer(0, 0);
   AddGas(0);
 }
 
 //########SafeMath For Uint256###########
-uint256 U256SafeMul(uint256 x, uint256 y)
-{
+uint256 U256SafeMul(uint256 x, uint256 y) {
   uint256 z = U256_Mul(x, y);
   Require(U256_Cmp(x, U256(0)) == 0 || U256_Cmp(U256_Div(z, x), y) == 0,
           "u256SafeMul overflow");
   return z;
 }
-uint256 U256SafeDiv(uint256 x, uint256 y)
-{
+uint256 U256SafeDiv(uint256 x, uint256 y) {
   Require(U256_Cmp(y, U256(0)) == 1, "U256SafeDiv y == 0");
   uint256 z = U256_Div(x, y);
   //这种情况不会出现
@@ -246,13 +256,11 @@ uint256 U256SafeDiv(uint256 x, uint256 y)
           "U256SafeDiv overflow");
   return z;
 }
-uint256 U256SafeSub(uint256 x, uint256 y)
-{
+uint256 U256SafeSub(uint256 x, uint256 y) {
   Require(U256_Cmp(x, y) != -1, "U256SafeSub x < y");
   return U256_Sub(x, y);
 }
-uint256 U256SafeAdd(uint256 x, uint256 y)
-{
+uint256 U256SafeAdd(uint256 x, uint256 y) {
   uint256 z = U256_Add(x, y);
   Require(U256_Cmp(z, x) != -1 && U256_Cmp(z, y) != -1, "U256SafeAdd overflow");
   return z;
