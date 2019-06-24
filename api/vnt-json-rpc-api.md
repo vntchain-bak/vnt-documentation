@@ -1544,7 +1544,18 @@ None
 
 ##### Returns
 
-`DATA` - a list of all the witness candidates. Candidates sorted by `voteCount` and `owner`.
+
+`Object` - a list of all the witness candidates. Candidates sorted by `voteCount` and `owner`.
+- `owner`: `DATA`, 20 Bytes -  account address of a candidate.
+- `name`: `String` - name of a candidate.
+- `active`: `Bool` - if true, this account is still a candidate. else, it was a candidate, but now exit.
+- `website`: `String` - the website url of a candidate.
+- `url`: `String` - the p2p url  of a candidate.
+- `voteCount`: `QUANTITY` - how much votes that this candidate got.
+- `totalBounty`: `QUANTITY` - the total bounty that this candidate earned since it became a witness.
+- `extractedBounty`: `QUANTITY` - the bounty that has been extraced by a witness.
+- `lastExtractTime`: `QUANTITY` -  the unix timestamp for when a witness extract bounty.
+
 
 ##### Example
 
@@ -1558,48 +1569,15 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getAllCandidates","params":
     "id": 1,
     "result": [
         {
-            "owner": "0xbf66D398226F200467cD27B14e85b25a8c232384",
-            "name": "node3",
-            "active": true,
-            "url": "/ip4/127.0.0.1/tcp/5212/ipfs/1kHfop9dnUHHmtBXVkLB5UauAmACtrsEX5H5t6oCRpdL198",
-            "voteCount": 10,
-            "totalBounty": 0,
-            "extractedBounty": 0,
-            "lastExtractTime": 0,
-            "website": "www.node3.com"
-        },
-        {
             "owner": "0x122369F04f32269598789998de33e3d56E2C507a",
             "name": "node0",
             "active": true,
             "url": "/ip4/127.0.0.1/tcp/5210/ipfs/1kHcch6yuBCgC5nPPSK3Yp7Es4c4eenxAeK167pYwUvNjRo",
-            "voteCount": 0,
-            "totalBounty": 0,
-            "extractedBounty": 0,
-            "lastExtractTime": 0,
+            "voteCount": "0x276deba6",
+            "totalBounty": "0x0",
+            "extractedBounty": "0x0",
+            "lastExtractTime": "0x0",
             "website": "www.node0.com"
-        },
-        {
-            "owner": "0x3DcF0b3787C31B2bdF62d5bC9128A79c2bb18829",
-            "name": "node2",
-            "active": true,
-            "url": "/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bzUnMr1NbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB",
-            "voteCount": 0,
-            "totalBounty": 72000000000000000000,
-            "extractedBounty": 0,
-            "lastExtractTime": 0,
-            "website": "www.node2.com"
-        },
-        {
-            "owner": "0x42a875Ac43f2b4e6D17f54D288071f5952bF8911",
-            "name": "node1",
-            "active": true,
-            "url": "/ip4/127.0.0.1/tcp/5213/ipfs/1kHHWuQNUVV2wgE8SqzQjWhiFQcfpkP5tRVTdJXAPWVj4nR",
-            "voteCount": 0,
-            "totalBounty": 0,
-            "extractedBounty": 0,
-            "lastExtractTime": 0,
-            "website": "www.node1.com"
         }
     ]
 }
@@ -1617,7 +1595,10 @@ Returns stake information of a user.
 
 ##### Returns
 
-`DATA` - stake information.
+`Object` - stake information of an account.
+- `owner`: `DATA`, 20 Bytes -  account address.
+- `stakeCount`: `QUANTITY` - how much token has been staked of an account.
+- `lastStakeTimeStamp`: `QUANTITY` - the unix timestamp for when an account stake token.
 
 ##### Example
 
@@ -1631,8 +1612,8 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getStake","params":["0x1223
     "id": 1,
     "result": {
         "owner": "0x122369f04f32269598789998de33e3d56e2c507a",
-        "stakeCount": 5,
-        "lastStakeTimeStamp": 1548299757
+        "stakeCount": "0x1dcd6501",
+        "lastStakeTimeStamp": "0x5ceded2f"
     }
 }
 ```
@@ -1642,7 +1623,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getStake","params":["0x1223
 
 #### core_getVoter
 
-Returns a voter's information, stake information included.
+Returns a voter's information.
 
 ##### Parameters
 
@@ -1650,7 +1631,15 @@ Returns a voter's information, stake information included.
 
 ##### Returns
 
-`DATA` - a voter's information.
+`Object` - vote information of an account.
+- `owner`: `DATA`, 20 Bytes -  account address.
+- `isProxy`: `Bool` - whether this account is a proxy or not.
+- `proxyVoteCount`: `QUANTITY` - the proxy vote that this account has.
+- `proxy`: `DATA`, 20 Bytes -  the proxy account address of this account.
+- `lastStakeCount`: `QUANTITY` - the token that has been stake when last vote.
+- `lastVoteCount`: `QUANTITY` - the number of votes cast from this account.
+- `lastVoteTimeStamp`: `QUANTITY` - the unix timestamp for when this account vote.
+- `voteCandidates`: `DATA` - list of candidates voted by this account.
 
 ##### Example
 
@@ -1665,13 +1654,14 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getVoter","params":["0x1223
     "result": {
         "owner": "0x122369f04f32269598789998de33e3d56e2c507a",
         "isProxy": false,
-        "proxyVoteCount": 0,
+        "proxyVoteCount": "0x0",
         "proxy": "0x0000000000000000000000000000000000000000",
-        "lastVoteCount": 9,
-        "lastVoteTimeStamp": 1545039733,
+        "lastStakeCount": "0x1dcd64ff",
+        "lastVoteCount": "0x276deba4",
+        "lastVoteTimeStamp": "0x5cedec83",
         "voteCandidates": [
             "0x122369f04f32269598789998de33e3d56e2c507a"
-        ],
+        ]
     }
 }
 ```
@@ -1688,7 +1678,7 @@ None.
 
 ##### Returns
 
- `QUANTITY` - integer of the left VNT bounty in wei.
+`QUANTITY` - integer of the left VNT bounty in wei.
 
 ##### Example
 
@@ -1701,5 +1691,38 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getRestVNTBounty","params":
     "jsonrpc": "2.0",
     "id": 1,
     "result": 9.99998914e+26
+}
+```
+
+***
+
+#### core_getMainNetVotes
+
+Returns the main net active information, how many token has been staked and voted.
+
+##### Parameters
+
+None.
+
+##### Returns
+
+`Object` - main net active .
+- `voteStake`: `QUANTITY` - the token that has been voted. Unit is VNT.
+- `active`: `Bool` - whether the main net is actived or not.
+
+##### Example
+
+```js
+// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"core_getMainNetVotes","params":[],"id":1}'
+
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "voteStake": "0x1dcd6501",
+        "active": true
+    }
 }
 ```

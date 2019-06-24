@@ -191,6 +191,8 @@ tx=voteContract.unStake.sendTransaction({from:core.coinbase})
 
 投票见证人只有1个参数：候选人账号地址的列表。示例是把票投给了自己。
 
+> 提醒：当被投票的账号已不是候选人时，候选人无法获得票数。当所有被投账户不是候选人时，投票会执行成功，浪费你的一次投票机会。
+
 ```js
 tx=voteContract.voteWitnesses.sendTransaction([core.coinbase], {from:core.coinbase})
 ```
