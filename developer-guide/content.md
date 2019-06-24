@@ -4,7 +4,7 @@
 
 ## VNT Chain介绍——wtb
 
-1. 《Hubble介绍》：白皮书摘要
+1. [Hubble介绍](./01-introduction/hubble.md)
 1. 《里程碑》
 1. 《社区建设》：开发者群、第三方链接（对社区有贡献的组织）、基金会（组织结构）等
 
