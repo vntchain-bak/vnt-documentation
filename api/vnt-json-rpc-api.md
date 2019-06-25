@@ -1597,7 +1597,8 @@ Returns stake information of a user.
 
 `Object` - stake information of an account.
 - `owner`: `DATA`, 20 Bytes -  account address.
-- `stakeCount`: `QUANTITY` - how much token has been staked of an account.
+- `stakeCount`: `QUANTITY` - the take down the whole of `vnt`.
+- `vnt`: `QUANTITY` - how much VNT token has been staked of an account.
 - `lastStakeTimeStamp`: `QUANTITY` - the unix timestamp for when an account stake token.
 
 ##### Example
@@ -1613,6 +1614,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getStake","params":["0x1223
     "result": {
         "owner": "0x122369f04f32269598789998de33e3d56e2c507a",
         "stakeCount": "0x1dcd6501",
+        "vnt": "0x1dcd6501",
         "lastStakeTimeStamp": "0x5ceded2f"
     }
 }

@@ -98,13 +98,8 @@ ABI描述了合约的每个函数的入参和输出结果。
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "name": "stakeCount",
-                "type": "uint256"
-            }
-        ],
-        "name": "stake",
+        "inputs": [],
+        "name": "$stake",
         "outputs": [],
         "type": "function"
     },
@@ -128,7 +123,7 @@ ABI描述了合约的每个函数的入参和输出结果。
 在console使用ABI获取投票合约实例：
 
 ```js
-var abi =[{"inputs":[{"name":"nodeUrl","type":"bytes"},{"name":"website","type":"bytes"},{"name":"nodeName","type":"bytes"}],"name":"registerWitness","outputs":[],"type":"function"},{"inputs":[],"name":"unregisterWitness","outputs":[],"type":"function"},{"inputs":[{"name":"candidate","type":"address[]"}],"name":"voteWitnesses","outputs":[],"type":"function"},{"inputs":[],"name":"cancelVote","outputs":[],"type":"function"},{"inputs":[],"name":"startProxy","outputs":[],"type":"function"},{"inputs":[],"name":"stopProxy","outputs":[],"type":"function"},{"inputs":[],"name":"cancelProxy","outputs":[],"type":"function"},{"inputs":[{"name":"proxy","type":"address"}],"name":"setProxy","outputs":[],"type":"function"},{"inputs":[{"name":"stakeCount","type":"uint256"}],"name":"stake","outputs":[],"type":"function"},{"inputs":[],"name":"unStake","outputs":[],"type":"function"},{"inputs":[],"name":"extractOwnBounty","outputs":[],"type":"function"}]
+var abi =[{"inputs":[{"name":"nodeUrl","type":"bytes"},{"name":"website","type":"bytes"},{"name":"nodeName","type":"bytes"}],"name":"registerWitness","outputs":[],"type":"function"},{"inputs":[],"name":"unregisterWitness","outputs":[],"type":"function"},{"inputs":[{"name":"candidate","type":"address[]"}],"name":"voteWitnesses","outputs":[],"type":"function"},{"inputs":[],"name":"cancelVote","outputs":[],"type":"function"},{"inputs":[],"name":"startProxy","outputs":[],"type":"function"},{"inputs":[],"name":"stopProxy","outputs":[],"type":"function"},{"inputs":[],"name":"cancelProxy","outputs":[],"type":"function"},{"inputs":[{"name":"proxy","type":"address"}],"name":"setProxy","outputs":[],"type":"function"},{"inputs":[],"name":"$stake","outputs":[],"type":"function"},{"inputs":[],"name":"unStake","outputs":[],"type":"function"},{"inputs":[],"name":"extractOwnBounty","outputs":[],"type":"function"}]
 var voteContract = vnt.core.contract(abi).at("0x0000000000000000000000000000000000000009");
 ```
 
@@ -137,12 +132,12 @@ var voteContract = vnt.core.contract(abi).at("0x00000000000000000000000000000000
 下面是合约调用的基本方法：
 
 ```js
-tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
+tx=voteContract.$stake.sendTransaction(5, {from:core.coinbase})
 ```
 
 合约调用包含5部分，其中：
 - voteContract：合约实例，本例中是投票合约示例
-- stake：要调用的合约函数，本例是stake函数
+- $stake：要调用的合约函数，本例是$stake函数，其中`$`代表本函数是可转账函数，即调用合约的同时进行转账
 - sendTransaction: 使用此RPC接口发送交易，即通过交易调用合约
 - 5：合约函数参数，从ABI能看出来`stake`函数需要1个参数：抵押的代币数量
 - `{from:core.coinbase}`：sendTransaction的参数，详细见[core_sendTransaction](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md#core_sendtransaction)
@@ -176,7 +171,7 @@ tx=voteContract.unregisterWitness.sendTransaction({from:core.coinbase})
 投票人在投票前需要抵押代币，参数只有1个，即本次抵押代币的数量，代币单位为VNT。
 
 ```js
-tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
+tx=voteContract.$stake.sendTransaction(5, {from:core.coinbase})
 ```
 
 #### 投票人取消抵押代币
