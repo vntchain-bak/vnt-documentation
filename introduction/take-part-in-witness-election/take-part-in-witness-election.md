@@ -132,7 +132,7 @@ var voteContract = vnt.core.contract(abi).at("0x00000000000000000000000000000000
 下面是合约调用的基本方法：
 
 ```js
-tx=voteContract.$stake.sendTransaction(5, {from:core.coinbase})
+tx=voteContract.$stake.sendTransaction({from:core.coinbase, value:5e18})
 ```
 
 合约调用包含5部分，其中：
