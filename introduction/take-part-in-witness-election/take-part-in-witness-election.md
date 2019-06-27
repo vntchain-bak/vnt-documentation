@@ -168,7 +168,7 @@ tx=voteContract.unregisterWitness.sendTransaction({from:core.coinbase})
 
 #### 投票人抵押代币
 
-投票人在投票前需要抵押代币，参数只有1个，即本次抵押代币的数量，代币单位为VNT。
+投票人在投票前需要抵押代币，参数只有1个，即本次抵押代币的数量，代币单位为Wei，示例为抵押了5个VNT。
 
 ```js
 tx=voteContract.$stake.sendTransaction({from:core.coinbase, value:5e18})
