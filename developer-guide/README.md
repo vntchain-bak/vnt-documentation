@@ -13,12 +13,12 @@
 白皮书摘抄
 
 1. [共识机制](./01-introduction/consensus.md)
-1. 治理——凤喜
 1. [系统合约](./01-introduction/system-contract.md)
 1. [VNT代币与经济模型](./03-ecological/vnt-token.md)
+1. [社区治理](./03-ecological/management.md)
 1. [账号](./01-introduction/account.md)
 1. [交易费用](./01-introduction/gas.md)
-1. 虚拟机——凤喜
+1. [虚拟机](./02-function/wavm.md)
 
 ## Hubble生态
 
