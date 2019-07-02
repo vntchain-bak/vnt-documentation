@@ -6,16 +6,12 @@
 
 1. [Hubble介绍](./01-introduction/hubble.md)
 1. 《里程碑》
-1. 《社区建设》：开发者群、第三方链接（对社区有贡献的组织）、基金会（组织结构）等
+1. [社区治理](./03-ecological/management.md)
 
 ## 功能介绍
-
-白皮书摘抄
-
 1. [共识机制](./01-introduction/consensus.md)
 1. [系统合约](./01-introduction/system-contract.md)
 1. [VNT代币与经济模型](./03-ecological/vnt-token.md)
-1. [社区治理](./03-ecological/management.md)
 1. [账号](./01-introduction/account.md)
 1. [交易费用](./01-introduction/gas.md)
 1. [虚拟机](./02-function/wavm.md)
