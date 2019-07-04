@@ -17,7 +17,7 @@
 
 ## Hubble生态
 
-1. 《Hubble的生态》：获得第一个VNT、（钱包客户端）、区块链浏览器、其他工具——wtb
+1. [Hubble的工具](./03-ecological/hubble-tools.md)
 1. [竞选超级节点](./04-bp/become-to-witness.md)
 
 ## 加入Hubble网络
