@@ -2,7 +2,7 @@
 
 本文档面向合约和DApp开发者、工具开发者、第三方（交易所）开发者、节点运维等一切关注VNT发展的人。
 
-## VNT Chain介绍
+## Hubble介绍
 
 1. [Hubble介绍](./01-introduction/hubble.md)
 1. [社区治理](./03-ecological/management.md)
