@@ -1728,36 +1728,3 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getRestVNTBounty","params":
     "result": 9.99998914e+26
 }
 ```
-
-***
-
-#### core_getMainNetVotes
-
-Returns the main net active information, how many token has been staked and voted.
-
-##### Parameters
-
-None.
-
-##### Returns
-
-`Object` - main net active .
-- `voteStake`: `QUANTITY` - the token that has been voted. Unit is VNT.
-- `active`: `Bool` - whether the main net is actived or not.
-
-##### Example
-
-```js
-// Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"core_getMainNetVotes","params":[],"id":1}'
-
-// Result
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "result": {
-        "voteStake": "0x1dcd6501",
-        "active": true
-    }
-}
-```
