@@ -313,14 +313,6 @@ tx=voteContract.voteWitnesses.sendTransaction([core.coinbase], {from:core.coinba
 tx=voteContract.cancelVote.sendTransaction({from:core.coinbase})
 ```
 
-#### 见证人提取投票激励
-
-提取激励时不需要提供参数。
-
-```js
-tx=voteContract.extractOwnBounty.sendTransaction({from:core.coinbase})
-```
-
 #### 开启代理
 
 开启代理成为代理人，代表节点愿意替代别人投票。
