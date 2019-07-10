@@ -4,13 +4,14 @@
 
 ### 基本介绍
 
-投票合约的作用是选出见证人。投票合约提供了以下9个功能：
+投票合约的作用是选出见证人。投票合约提供了以下11个功能：
 
 1. 投票人抵押stake、取消抵押
 2. 注册候选人、取消注册
 3. 投票人为候选人投票、取消投票
 4. 投票人设置代理人、取消代理，投票人开启代理、关闭代理
-5. 见证人提取投票激励
+5. 绑定候选人和取消绑定候选人
+6. 向选举合约捐献超级节点激励
 
 以上每个功能对应了投票合约的1个函数，具体将在下面介绍。
 
@@ -27,93 +28,173 @@ ABI描述了合约的每个函数的入参和输出结果。
 ```js
 [
     {
-        "inputs": [
+        "name":"registerWitness",
+        "inputs":[
             {
-                "name": "nodeUrl",
-                "type": "bytes"
+                "name":"nodeUrl",
+                "type":"bytes"
             },
             {
-                "name": "website",
-                "type": "bytes"
+                "name":"website",
+                "type":"bytes"
             },
             {
-                "name": "nodeName",
-                "type": "bytes"
-            }
-        ],
-        "name": "registerWitness",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "unregisterWitness",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
+                "name":"nodeName",
+                "type":"bytes"
+            },
             {
-                "name": "candidate",
-                "type": "address[]"
-            }
-        ],
-        "name": "voteWitnesses",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "cancelVote",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "startProxy",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "stopProxy",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "cancelProxy",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
+                "name":"binder",
+                "type":"address"
+            },
             {
-                "name": "proxy",
-                "type": "address"
+                "name":"beneficiary",
+                "type":"address"
             }
         ],
-        "name": "setProxy",
-        "outputs": [],
-        "type": "function"
+        "outputs":[
+
+        ],
+        "type":"function"
     },
     {
-        "inputs": [],
-        "name": "$stake",
-        "outputs": [],
-        "type": "function"
+        "name":"unregisterWitness",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
     },
     {
-        "inputs": [],
-        "name": "unStake",
-        "outputs": [],
-        "type": "function"
+        "name":"voteWitnesses",
+        "inputs":[
+            {
+                "name":"candidate",
+                "type":"address[]"
+            }
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
     },
     {
-        "inputs": [],
-        "name": "extractOwnBounty",
-        "outputs": [],
-        "type": "function"
+        "name":"cancelVote",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"startProxy",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"stopProxy",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"cancelProxy",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"setProxy",
+        "inputs":[
+            {
+                "name":"proxy",
+                "type":"address"
+            }
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"$stake",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"unStake",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"$depositReward",
+        "inputs":[
+
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"$bindCandidate",
+        "inputs":[
+            {
+                "name":"candidate",
+                "type":"address"
+            },
+            {
+                "name":"beneficiary",
+                "type":"address"
+            }
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
+    },
+    {
+        "name":"unbindCandidate",
+        "inputs":[
+            {
+                "name":"candidate",
+                "type":"address"
+            },
+            {
+                "name":"beneficiary",
+                "type":"address"
+            }
+        ],
+        "outputs":[
+
+        ],
+        "type":"function"
     }
 ]
 ```
@@ -123,7 +204,7 @@ ABI描述了合约的每个函数的入参和输出结果。
 在console使用ABI获取投票合约实例：
 
 ```js
-var abi =[{"inputs":[{"name":"nodeUrl","type":"bytes"},{"name":"website","type":"bytes"},{"name":"nodeName","type":"bytes"}],"name":"registerWitness","outputs":[],"type":"function"},{"inputs":[],"name":"unregisterWitness","outputs":[],"type":"function"},{"inputs":[{"name":"candidate","type":"address[]"}],"name":"voteWitnesses","outputs":[],"type":"function"},{"inputs":[],"name":"cancelVote","outputs":[],"type":"function"},{"inputs":[],"name":"startProxy","outputs":[],"type":"function"},{"inputs":[],"name":"stopProxy","outputs":[],"type":"function"},{"inputs":[],"name":"cancelProxy","outputs":[],"type":"function"},{"inputs":[{"name":"proxy","type":"address"}],"name":"setProxy","outputs":[],"type":"function"},{"inputs":[],"name":"$stake","outputs":[],"type":"function"},{"inputs":[],"name":"unStake","outputs":[],"type":"function"},{"inputs":[],"name":"extractOwnBounty","outputs":[],"type":"function"}]
+var abi =[{"name":"registerWitness","inputs":[{"name":"nodeUrl","type":"bytes"},{"name":"website","type":"bytes"},{"name":"nodeName","type":"bytes"},{"name":"binder","type":"address"},{"name":"beneficiary","type":"address"}],"outputs":[],"type":"function"},{"name":"unregisterWitness","inputs":[],"outputs":[],"type":"function"},{"name":"voteWitnesses","inputs":[{"name":"candidate","type":"address[]"}],"outputs":[],"type":"function"},{"name":"cancelVote","inputs":[],"outputs":[],"type":"function"},{"name":"startProxy","inputs":[],"outputs":[],"type":"function"},{"name":"stopProxy","inputs":[],"outputs":[],"type":"function"},{"name":"cancelProxy","inputs":[],"outputs":[],"type":"function"},{"name":"setProxy","inputs":[{"name":"proxy","type":"address"}],"outputs":[],"type":"function"},{"name":"$stake","inputs":[],"outputs":[],"type":"function"},{"name":"unStake","inputs":[],"outputs":[],"type":"function"},{"name":"$depositReward","inputs":[],"outputs":[],"type":"function"},{"name":"$bindCandidate","inputs":[{"name":"candidate","type":"address"},{"name":"beneficiary","type":"address"}],"outputs":[],"type":"function"},{"name":"unbindCandidate","inputs":[{"name":"candidate","type":"address"},{"name":"beneficiary","type":"address"}],"outputs":[],"type":"function"}]
 var voteContract = vnt.core.contract(abi).at("0x0000000000000000000000000000000000000009");
 ```
 
@@ -139,23 +220,26 @@ tx=voteContract.$stake.sendTransaction({from:core.coinbase, value:5e18})
 - voteContract：合约实例，本例中是投票合约示例
 - $stake：要调用的合约函数，本例是$stake函数，其中`$`代表本函数是可转账函数，即调用合约的同时进行转账
 - sendTransaction: 使用此RPC接口发送交易，即通过交易调用合约
-- 5：合约函数参数，从ABI能看出来`stake`函数需要1个参数：抵押的代币数量
-- `{from:core.coinbase}`：sendTransaction的参数，详细见[core_sendTransaction](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md#core_sendtransaction)
+- `{from:core.coinbase, value:5e18}`：sendTransaction的参数，详细见[core_sendTransaction](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md#core_sendtransaction)
 
 通过以上介绍的方法，为大家提供投票合约每个函数的调用样例。
 
 #### 注册见证人节点
 
-从ABI可以看出来，当前注册见证人只需要提供3个参数：
-- name: 节点名称
+从ABI可以看出来，当前注册见证人只需要提供5个参数：
+- nodename: 节点名称
 - website：节点网站网址
 - nodeurl：函数参数，见证人函数的参数
+- binder: 与该候选节点建立联系的绑定人
+- beneficiary：与该候选节点建立联系的绑定人的受益人账号，该账号接收超级节点的所有受益人地址
 
 ```js
 name="greatvnt"
 website="www.greatvnt.com"
 nodeurl="/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bxUnMr1dbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB"
-tx=voteContract.registerWitness.sendTransaction(nodeurl,website,name, {from: core.coinbase})
+binder="0x02f8d9c9bb81b3a81bf13d4ec8818be5918d1250"
+beneficiary="0x123456c9bb81b3a81bf13d4ec8818be591812345"
+tx=voteContract.registerWitness.sendTransaction(nodeurl,website,name, binder,beneficiary,{from: core.coinbase})
 ```
 
 #### 取消注册见证人节点
@@ -164,6 +248,35 @@ tx=voteContract.registerWitness.sendTransaction(nodeurl,website,name, {from: cor
 
 ```js
 tx=voteContract.unregisterWitness.sendTransaction({from:core.coinbase})
+```
+#### 绑定候选人（见证人节点）
+
+和候选人进行绑定，需要提供和候选人一致的见证人节点账号和受益人账号。发送该交易的账号为绑定人。
+
+需要提供2个参数：
+- candidate: 见证人/超级节点/候选人的地址。
+- beneficiary: 受益人账号地址，超级节点的收益都将发放到该账号。
+
+另外，还需要填写转账金额`value`：1000万VNT，所以需要确保绑定人账号至少拥有1000万VNT。
+
+```js
+candidate="0x491f4e8d914e30b1a5e8c804789094fe30971807"
+beneficiary="0x123456c9bb81b3a81bf13d4ec8818be591812345"
+tx=voteContract.$bindCandidate.sendTransaction(candidate,beneficiary,{from: core.coinbase, value:1e25})
+```
+
+#### 取消绑定候选人（见证人节点）
+
+和候选人取消绑定，需要提供和候选人一致的见证人节点账号和受益人账号，以进行匹配和验证。
+
+需要提供2个参数：
+- candidate: 见证人/超级节点/候选人的地址。
+- beneficiary: 受益人账号地址，超级节点的收益都将发放到该账号。
+
+```js
+candidate="0x491f4e8d914e30b1a5e8c804789094fe30971807"
+beneficiary="0x123456c9bb81b3a81bf13d4ec8818be591812345"
+tx=voteContract.unbindCandidate.sendTransaction(candidate,beneficiary,{from: core.coinbase})
 ```
 
 #### 投票人抵押代币
@@ -240,10 +353,24 @@ tx=voteContract.setProxy.sendTransaction("0x2c6822e1529e5bb080b1d0290ec035e77c0a
 tx=voteContract.cancelProxy.sendTransaction({from:core.coinbase})
 ```
 
+#### 向合约保存超级节点奖金
+
+超级节点所获得的激励，来自选举合约中保存的激励数量。激励有2个来源：
+
+1. 基金会捐献到选举合约。
+1. 个人捐献到选举合约。
+
+需要确保发送交易的账号有足够的捐献余额。
+
+```js
+amount=1e25 // 待转账金额，可自行设定
+tx=voteContract.$depositReward.sendTransaction({from:core.coinbase, value:amount})
+```
+
 ### 查询投票信息
 
 当前提供了3个JSON RPC API可以查询投票合约信息，具体信息见[JSON RPC API文档](../../api/vnt-json-rpc-api.md)。
 
 - `core_getVoter`：获取某个投票人的所有信息。
 - `core_getAllCandidates`：获取所有见证人候选人的信息。
-- `core_getRestVNTBounty`：获取当前VNT激励剩余值。
+- `core_getRestVNTBounty`：获取当前超级节点剩余的VNT激励剩余值。
