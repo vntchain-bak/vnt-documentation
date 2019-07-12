@@ -67,7 +67,6 @@ cd vntnode
 
 第三步：使用`init.json`文件初始化节点，测试网`init.json`内容如下：
 
-**待定**
 ```json
 {
     "config": {
@@ -167,7 +166,6 @@ gvnt account new .
 
 第五步：使用任一公共全节点的p2p地址作为bootnode，启动节点：
 
-**待定：填写全节点p2p地址**
 ```bash
 gvnt --networkid 2 --datadir . --port 3001 --vntbootnode "/ip4/39.97.235.82/tcp/3001/ipfs/1kHGsEoQBPJF6qBbWmbkEr6BFCfBJcyEucEd1bdwUdFs3zp" --syncmode full --rpc --rpcaddr 0.0.0.0 --rpcport 8880 --rpcapi="db,core,net,vnt,personal" console
 ```
