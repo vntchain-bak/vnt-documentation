@@ -23,12 +23,10 @@
 
 成为超级节点应当遵守以下规范，若违反规范，社区有权对违反规范的超级节点账号实施惩罚：
 
-**TODO补全**
-
 1. 注册为候选节点后，应当始终保持节点在线
 1. 注册超级节点时，提供必要的、准确的信息
 1. 不可贿选
-1. 。。。
+
 
 ## 网络安全推荐配置
 
@@ -63,13 +61,22 @@
 		"logo_svg": "https://www.vnteu.com/logo.svg"
 	},
 	"location": {
-		"name": "Europe",
+		"name": "Paris",
 		"country": "France",
 		"latitude": 48.8566,
 		"longitude": 2.3522
 	}
 }
 ```
+
+- candidate_name: 节点名称
+- candidate_address: 节点账户地址
+- website: 节点官网
+- branding: 节点logo
+- location: 
+	- name：城市名
+	- country：国家
+	- latitude，longitude: 经纬度
 
 注册超级节点有2种方式：
 
