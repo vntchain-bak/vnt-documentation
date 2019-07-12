@@ -1548,13 +1548,13 @@ None
 `Object` - a list of all the witness candidates. Candidates sorted by `voteCount` and `owner`.
 - `owner`: `DATA`, 20 Bytes -  account address of a candidate.
 - `name`: `String` - name of a candidate.
-- `active`: `Bool` - if true, this account is still a candidate. else, it was a candidate, but now exit.
+- `registered`: `Bool` - if true, this account is registered as a candidate. else, it was unregistered.
 - `website`: `String` - the website url of a candidate.
 - `url`: `String` - the p2p url  of a candidate.
 - `voteCount`: `QUANTITY` - how much votes that this candidate got.
-- `totalBounty`: `QUANTITY` - the total bounty that this candidate earned since it became a witness.
-- `extractedBounty`: `QUANTITY` - the bounty that has been extraced by a witness.
-- `lastExtractTime`: `QUANTITY` -  the unix timestamp for when a witness extract bounty.
+- `binder`: `DATA` 20 Bytes - the binder address of this candidate.
+- `beneficiary`: `DATA` 20 Bytes - the beneficiary address for binder address of this candidate.
+- `bind`: `QUANTITY` -  if true, the binder has bind with the candidate. else, it was not bind or unbind.
 
 
 ##### Example
@@ -1571,13 +1571,46 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getAllCandidates","params":
         {
             "owner": "0x122369F04f32269598789998de33e3d56E2C507a",
             "name": "node0",
-            "active": true,
+            "registered": true,
+            "website": "www.node0.com",
             "url": "/ip4/127.0.0.1/tcp/5210/ipfs/1kHcch6yuBCgC5nPPSK3Yp7Es4c4eenxAeK167pYwUvNjRo",
-            "voteCount": "0x276deba6",
-            "totalBounty": "0x0",
-            "extractedBounty": "0x0",
-            "lastExtractTime": "0x0",
-            "website": "www.node0.com"
+            "voteCount": "0xaef33",
+            "binder": "0x122369F04f32269598789998de33e3d56E2C507a",
+            "beneficiary": "0x0000000000000000000000000000000000000003",
+            "bind": true
+        },
+        {
+            "owner": "0x3DcF0b3787C31B2bdF62d5bC9128A79c2bb18829",
+            "name": "node1",
+            "registered": true,
+            "website": "www.node1.com",
+            "url": "/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bzUnMr1NbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB",
+            "voteCount": "0xaef33",
+            "binder": "0x3DcF0b3787C31B2bdF62d5bC9128A79c2bb18829",
+            "beneficiary": "0x0000000000000000000000000000000000000004",
+            "bind": true
+        },
+        {
+            "owner": "0x42a875Ac43f2b4e6D17f54D288071f5952bF8911",
+            "name": "node2",
+            "registered": true,
+            "website": "www.node2.com",
+            "url": "/ip4/127.0.0.1/tcp/5212/ipfs/1kHfop9dnUHHmtBXVkLB5UauAmACtrsEX5H5t6oCRpdL198",
+            "voteCount": "0xaef33",
+            "binder": "0x42a875Ac43f2b4e6D17f54D288071f5952bF8911",
+            "beneficiary": "0x0000000000000000000000000000000000000005",
+            "bind": true
+        },
+        {
+            "owner": "0xbf66D398226F200467cD27B14e85b25a8c232384",
+            "name": "node3",
+            "registered": true,
+            "website": "www.node3.com",
+            "url": "/ip4/127.0.0.1/tcp/5213/ipfs/1kHHWuQNUVV2wgE8SqzQjWhiFQcfpkP5tRVTdJXAPWVj4nR",
+            "voteCount": "0xaef33",
+            "binder": "0xbf66D398226F200467cD27B14e85b25a8c232384",
+            "beneficiary": "0x0000000000000000000000000000000000000006",
+            "bind": true
         }
     ]
 }
@@ -1693,38 +1726,5 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"core_getRestVNTBounty","params":
     "jsonrpc": "2.0",
     "id": 1,
     "result": 9.99998914e+26
-}
-```
-
-***
-
-#### core_getMainNetVotes
-
-Returns the main net active information, how many token has been staked and voted.
-
-##### Parameters
-
-None.
-
-##### Returns
-
-`Object` - main net active .
-- `voteStake`: `QUANTITY` - the token that has been voted. Unit is VNT.
-- `active`: `Bool` - whether the main net is actived or not.
-
-##### Example
-
-```js
-// Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"core_getMainNetVotes","params":[],"id":1}'
-
-// Result
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "result": {
-        "voteStake": "0x1dcd6501",
-        "active": true
-    }
 }
 ```
