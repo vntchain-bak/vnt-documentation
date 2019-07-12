@@ -35,7 +35,7 @@ VNT Hubble测试网共部署了19个见证人节点，负责执行交易和打�
 "/ip4/192.168.9.21/tcp/3001/ipfs/1kHbb8Hx9uSbpzfrKVhMCYmksJcZU6gZp63Ycgn3QRpSafF"
 ```
 
-一个公共引导点的P2P地址：
+一个公共引导节点的P2P地址：
 ```
 "/ip4/101.37.164.86/tcp/3001/ipfs/1kHVWqjwrMKm7fjY3WhrHNUvWYX2XXNyHomP4HDFE5u6S2B"
 ```
