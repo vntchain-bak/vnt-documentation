@@ -65,7 +65,6 @@ cd vntnode
 
 第三步：使用`init.json`文件初始化节点，测试网`init.json`内容如下：
 
-**待定**
 ```json
 {
     "config": {
