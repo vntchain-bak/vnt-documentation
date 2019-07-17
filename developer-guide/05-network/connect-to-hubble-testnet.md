@@ -13,7 +13,7 @@ VNT Hubble测试网共部署了19个见证人节点，负责执行交易和打�
 
 19个初始的见证人P2P地址：
 
-```
+```bash
 "/ip4/192.168.9.47/tcp/3001/ipfs/1kHPSqs89VDi5Ngysw4Lsmwc9FFnfaynS7R5rGyrZpaoDjz",
 "/ip4/192.168.9.37/tcp/3001/ipfs/1kHPq9gUWVvFaBQCKUuUJprJeJjEZkPtr71tGvXB6AR8kEK",
 "/ip4/192.168.9.55/tcp/3001/ipfs/1kHSZLkEvs1t5zFt9FCUciwhE8qjzo5DEAXz1Bcut5wpDsU",
@@ -36,13 +36,13 @@ VNT Hubble测试网共部署了19个见证人节点，负责执行交易和打�
 ```
 
 一个公共引导节点的P2P地址：
-```
+```bash
 "/ip4/101.37.164.86/tcp/3001/ipfs/1kHVWqjwrMKm7fjY3WhrHNUvWYX2XXNyHomP4HDFE5u6S2B"
 ```
 
 3个公共全节点的RPC信息是：
 
-```
+```bash
 http://101.37.164.86:8880
 http://47.104.173.117:8880
 http://47.111.100.232:8880
@@ -175,7 +175,7 @@ $ gvnt attach gvnt.ipc
 ```
 
 查看同步：
-```
+```bash
 > core.syncing
 {
   currentBlock: 1992176,
