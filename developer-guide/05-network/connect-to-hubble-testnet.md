@@ -14,37 +14,24 @@ VNT Hubble测试网共部署了19个见证人节点，负责执行交易和打�
 19个初始的见证人P2P地址：
 
 ```bash
-"/ip4/192.168.9.47/tcp/3002/ipfs/1kHM6j2xYV3588TQUBMkczjH3Lk21t8YzsfCguV4LNGyXwf",
-"/ip4/192.168.9.37/tcp/3002/ipfs/1kHC7NbWu7BcbcofTZk6NDS8Gtj65f9nouonGfdoFZS1ojm",
-"/ip4/192.168.9.55/tcp/3002/ipfs/1kHXTyAYi4dvFbmGQg57mUUGPMwUJ3yUeri5uFERuRVXNys",
-"/ip4/192.168.9.46/tcp/3002/ipfs/1kHRaq2mbwQkyQ1WXkyxijnDCcEeNQqHxDCYcdMgKwrXppD",
-"/ip4/192.168.9.29/tcp/3002/ipfs/1kHQwe3GNFLMBsM4L77gEffqRR9GW7wzMsEqL6SuaCqrono",
-"/ip4/192.168.9.36/tcp/3002/ipfs/1kHdWmmCNQDj77yjz5mrwRd69tSete7BtJmXc4qycutz9G4",
-"/ip4/192.168.9.30/tcp/3002/ipfs/1kHVoW4sbWcaXuHwfSF66EeMZei1zEKY7zXw8UoR8Zgv9bm",
-"/ip4/192.168.9.51/tcp/3002/ipfs/1kHH454XPAGwQCLrsMUSssunnuzPVF8Xeq2Pgt4wBk7iKGu",
-"/ip4/192.168.9.26/tcp/3002/ipfs/1kHJFnmxboK28cmvkWPPaDNv2PBAkPPc7THRcWTWePA9uMy",
-"/ip4/192.168.9.54/tcp/3002/ipfs/1kHTbtbVpdpzBJPBuXyp9RG3Paf1Xmmvc6qC1dDohwsxDaV",
-"/ip4/192.168.9.24/tcp/3002/ipfs/1kHNzJtaKuMbaQvMQDVSRqFck9ZrsfbLN56DcgxVRb1WaF9",
-"/ip4/192.168.9.107/tcp/3002/ipfs/1kHSMSf2RzmRhCjEXHp1ZzYhivRcgo2ST7jQPxpY1ZfaxGi",
-"/ip4/192.168.9.79/tcp/3002/ipfs/1kHjWshrfFCfB1MW5p75oBuCJL2B4Sr8sedtaBbQuziNMa5",
-"/ip4/192.168.9.3/tcp/3002/ipfs/1kHLsGfXFpjXvFcBqRHShiMmZ5b8PFe5QLfFujM7aCRaJcc",
-"/ip4/192.168.9.112/tcp/3002/ipfs/1kHaqVK8jmvbqkzBhk3tYwWCsZk8eYfDXYpLJrygZ1z88iZ",
-"/ip4/192.168.9.93/tcp/3002/ipfs/1kHMQwBzJEUUbRaub4keyeYtP3mx4ARYLDyqRwxGTWqpCZY",
-"/ip4/192.168.9.66/tcp/3002/ipfs/1kHEpoAyuKU7Vs5QwaAYa7NUwePbE8cxDDceCHAymdUfAAV",
-"/ip4/192.168.9.59/tcp/3002/ipfs/1kHH2gGtWhFvX7EM47imo3QTvMsu1368N1dEzdtBiQaJ9j5",
-"/ip4/192.168.9.21/tcp/3002/ipfs/1kHhR4HmLhRSSw6tJey7awxYkCskDGTuHRYUVL2eUzAV1oL"
+"/ip4/192.168.9.106/tcp/3002/ipfs/1kHQpRW4VZbDPx3HTBKFHotHekoHRzncQiosfT8roc5nsSR",
+"/ip4/192.168.9.113/tcp/3002/ipfs/1kHP5ZqyCSYieopq1BkJMYvTvvJNwUXuDCLMRq3qVRG1hwJ",
+"/ip4/192.168.9.107/tcp/3002/ipfs/1kHBc6rBtQh4Y4YPh4daLS8LYALsWQ6G8aKf633R2EhzBQc",
+"/ip4/192.168.9.114/tcp/3002/ipfs/1kHjPSvoBZzA51Dv8DeZVgqjhMeDZWuwNkQirXsQeeBKzTc",
+"/ip4/192.168.9.124/tcp/3002/ipfs/1kHktVU6Qg5RgagNN4vzzCnr6LMrjsTh5CtrCbmztqc2Rrt",
+"/ip4/192.168.9.112/tcp/3002/ipfs/1kHLejtggY19L1Qa9MVZ1gnsRNNqqTprAiKQYqK4wBy74nK",
+"/ip4/192.168.9.136/tcp/3002/ipfs/1kHDzrP344t2NmAK8cmCChJm6aL4URSibn6Tbdg1VkMY1mR"
 ```
 
 一个公共引导节点的P2P地址：
 ```bash
-"/ip4/101.37.164.86/tcp/3002/ipfs/1kHbfUFUGYv6EPLYwYWdcS9d3HSoxHNqufDruj2aWcBTVKe"
+"/ip4/47.111.100.232/tcp/3002/ipfs/1kHhAQ9chwHuc6C3RAm3NZziu5PDY8VLBkueJ6vq7b3tSVU"
 ```
 
 3个公共全节点的RPC信息是：
 
 ```bash
 http://101.37.164.86:8880
-http://47.104.173.117:8880
 http://47.111.100.232:8880
 ```
 
@@ -70,30 +57,15 @@ cd vntnode
         "chainId": 2,
         "dpos": {
             "period": 2,
-            "witnessesnum": 19,
+            "witnessesnum": 7,
             "witnessesUrl": [
-                "/ip4/192.168.9.47/tcp/3002/ipfs/1kHM6j2xYV3588TQUBMkczjH3Lk21t8YzsfCguV4LNGyXwf",
-                "/ip4/192.168.9.37/tcp/3002/ipfs/1kHC7NbWu7BcbcofTZk6NDS8Gtj65f9nouonGfdoFZS1ojm",
-                "/ip4/192.168.9.55/tcp/3002/ipfs/1kHXTyAYi4dvFbmGQg57mUUGPMwUJ3yUeri5uFERuRVXNys",
-                "/ip4/192.168.9.46/tcp/3002/ipfs/1kHRaq2mbwQkyQ1WXkyxijnDCcEeNQqHxDCYcdMgKwrXppD",
-                "/ip4/192.168.9.29/tcp/3002/ipfs/1kHQwe3GNFLMBsM4L77gEffqRR9GW7wzMsEqL6SuaCqrono",
-
-                "/ip4/192.168.9.36/tcp/3002/ipfs/1kHdWmmCNQDj77yjz5mrwRd69tSete7BtJmXc4qycutz9G4",
-                "/ip4/192.168.9.30/tcp/3002/ipfs/1kHVoW4sbWcaXuHwfSF66EeMZei1zEKY7zXw8UoR8Zgv9bm",
-                "/ip4/192.168.9.51/tcp/3002/ipfs/1kHH454XPAGwQCLrsMUSssunnuzPVF8Xeq2Pgt4wBk7iKGu",
-                "/ip4/192.168.9.26/tcp/3002/ipfs/1kHJFnmxboK28cmvkWPPaDNv2PBAkPPc7THRcWTWePA9uMy",
-                "/ip4/192.168.9.54/tcp/3002/ipfs/1kHTbtbVpdpzBJPBuXyp9RG3Paf1Xmmvc6qC1dDohwsxDaV",
-
-                "/ip4/192.168.9.24/tcp/3002/ipfs/1kHNzJtaKuMbaQvMQDVSRqFck9ZrsfbLN56DcgxVRb1WaF9",
-                "/ip4/192.168.9.107/tcp/3002/ipfs/1kHSMSf2RzmRhCjEXHp1ZzYhivRcgo2ST7jQPxpY1ZfaxGi",
-                "/ip4/192.168.9.79/tcp/3002/ipfs/1kHjWshrfFCfB1MW5p75oBuCJL2B4Sr8sedtaBbQuziNMa5",
-                "/ip4/192.168.9.3/tcp/3002/ipfs/1kHLsGfXFpjXvFcBqRHShiMmZ5b8PFe5QLfFujM7aCRaJcc",
-                "/ip4/192.168.9.112/tcp/3002/ipfs/1kHaqVK8jmvbqkzBhk3tYwWCsZk8eYfDXYpLJrygZ1z88iZ",
-
-                "/ip4/192.168.9.93/tcp/3002/ipfs/1kHMQwBzJEUUbRaub4keyeYtP3mx4ARYLDyqRwxGTWqpCZY",
-                "/ip4/192.168.9.66/tcp/3002/ipfs/1kHEpoAyuKU7Vs5QwaAYa7NUwePbE8cxDDceCHAymdUfAAV",
-                "/ip4/192.168.9.59/tcp/3002/ipfs/1kHH2gGtWhFvX7EM47imo3QTvMsu1368N1dEzdtBiQaJ9j5",
-                "/ip4/192.168.9.21/tcp/3002/ipfs/1kHhR4HmLhRSSw6tJey7awxYkCskDGTuHRYUVL2eUzAV1oL"
+                "/ip4/192.168.9.106/tcp/3002/ipfs/1kHQpRW4VZbDPx3HTBKFHotHekoHRzncQiosfT8roc5nsSR",
+                "/ip4/192.168.9.113/tcp/3002/ipfs/1kHP5ZqyCSYieopq1BkJMYvTvvJNwUXuDCLMRq3qVRG1hwJ",
+                "/ip4/192.168.9.107/tcp/3002/ipfs/1kHBc6rBtQh4Y4YPh4daLS8LYALsWQ6G8aKf633R2EhzBQc",
+                "/ip4/192.168.9.114/tcp/3002/ipfs/1kHjPSvoBZzA51Dv8DeZVgqjhMeDZWuwNkQirXsQeeBKzTc",
+                "/ip4/192.168.9.124/tcp/3002/ipfs/1kHktVU6Qg5RgagNN4vzzCnr6LMrjsTh5CtrCbmztqc2Rrt",
+                "/ip4/192.168.9.112/tcp/3002/ipfs/1kHLejtggY19L1Qa9MVZ1gnsRNNqqTprAiKQYqK4wBy74nK",
+                "/ip4/192.168.9.136/tcp/3002/ipfs/1kHDzrP344t2NmAK8cmCChJm6aL4URSibn6Tbdg1VkMY1mR"
             ]
         }
     },
@@ -117,28 +89,13 @@ cd vntnode
         }
     },
     "witnesses": [
-        "0x739c36e1a03fef990c7adea519a1f71562b62c00",
-        "0x38697dfa982236ad122fb839fb500a77ef74485f",
-        "0x896c06ab6edb205ecfd3b6e8922e0160c21a639f",
-        "0x41a440e8373f2f6ce1cdb65d715c4282a9f7072c",
-
-        "0x36ad51a93be1bfb24f1d83ce743d452b9614653b",
-        "0x51ce27acac3ff0163e5eb90bd8054ac022522ed4",
-        "0x7f42760749d5795617e13d8274b00ff3d9236a0e",
-        "0x9599d9527f1b873726ec401c4105af19519af0ba",
-        "0xff29e84aae64d262fa5aa59d09042e6ed0fb015f",
-
-        "0x31418db5ec778c6148fb61ad2db0bd6e6cfd2235",
-        "0x950802b12e1c6b9fec4ce8bdadef2bae6c85b82e",
-        "0x9af0b2598e6990886ed6baabd662f88f67eacc68",
-        "0x6928360b84d73addf9e9f99856f50891da4baea1",
-        "0xa2aa9dc8c203158be660dd664f9aff8d5253e0b4",
-
-        "0x480ed56bee33a27d5580b0c221fbb15437f8abd5",
-        "0xc10988084211f2aa23fe2c2035c8aba3226a3bd0",
-        "0x8535fa644a28d2867c27f429c2e1d719b20f50b2",
-        "0xceb13af43dcc22dd62726f838e98a3c403c8dc08",
-        "0x4fbf6ebc18656ba6955e44f89b6eeef72eec21eb"
+       "0xb300a4b899e57263cdc6aa851995bf33366e862c",
+       "0x88cbe08dd0a90d85102976f810b56dfed8728f55",
+       "0x99e8263ceffea1b1e5b136a3a133f5064501e45d",
+       "0x2d39a693b2d65fa709b54a6d72f82623feaf71b9",
+       "0x41c7bba7c90783e69f09d63c9986d7bc9424c144",
+       "0xe840a1d3c904392d421fc5b460ef09b547de5c4e",
+       "0x800cf4b8b3d8f549299d291fb66497ce6653c2ca"
     ],
     "number": "0x0",
     "gasUsed": "0x0",
@@ -163,7 +120,7 @@ gvnt account new .
 第五步：使用公共全节点的p2p地址作为bootnode，启动私有节点：
 
 ```bash
-gvnt --networkid 2 --datadir . --port 3001 --vntbootnode "/ip4/101.37.164.86/tcp/3002/ipfs/1kHbfUFUGYv6EPLYwYWdcS9d3HSoxHNqufDruj2aWcBTVKe" --syncmode full --rpc --rpcaddr 0.0.0.0 --rpcport 8880 --rpcapi="db,core,net,vnt,personal" console
+gvnt --networkid 2 --datadir . --port 3001 --vntbootnode "/ip4/47.111.100.232/tcp/3002/ipfs/1kHhAQ9chwHuc6C3RAm3NZziu5PDY8VLBkueJ6vq7b3tSVU" --syncmode full --rpc --rpcaddr 0.0.0.0 --rpcport 8880 --rpcapi="db,core,net,vnt,personal" console
 ```
 
 
